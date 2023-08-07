@@ -74,7 +74,7 @@
             font-weight: 600;
             line-height: normal;
             width: 100%;
-            transition: .2s all ease-in-out;
+            transition: 0.2s all ease-in-out;
 
             @media (max-width: 48em) {
                 font-size: 3rem;
@@ -136,6 +136,22 @@
             line-height: normal;
             position: absolute;
             bottom: -2rem;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 0;
+            bottom: 1.5rem;
+
+            &.open {
+                img:nth-child(1) {
+                    display: none;
+                }
+
+                .hidden {
+                    display: block;
+                }
+            }
         }
 
         &:focus {

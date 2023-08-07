@@ -46,4 +46,21 @@ document.addEventListener('DOMContentLoaded', function () {
     if ($('#telephone').length) {
         $('#telephone').mask('+7(999) 999-99-99');
     }
+
+    //toggle password
+    $('.toggle-password').click(function () {
+        const eye = $(this);
+        const input = eye.parent().find('#password');
+
+        if ($(input).attr('type') === 'password') {
+            $(input).attr('type', 'text');
+            $(eye).addClass('open');
+        } else {
+            $(input).attr('type', 'password');
+            $(eye).removeClass('open');
+        }
+    });
+    $('#showPass').click(function () {
+        $('#showPass i').toggle();
+    });
 });

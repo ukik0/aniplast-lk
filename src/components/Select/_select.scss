@@ -18,15 +18,15 @@ $height: 46px;
 
     &.open {
         .select__dropdown {
-            display: block
+            display: block;
         }
 
         .select__input {
-            border-bottom: none
+            border-bottom: none;
         }
 
         .select__backdrop {
-            display: block
+            display: block;
         }
     }
 
@@ -66,7 +66,7 @@ $height: 46px;
         right: 0;
         max-height: 200px;
         overflow-y: auto;
-        box-shadow: 2px 3px 5px rgba(0, 0, 0, .3);
+        box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.3);
 
         .select__list {
             .select__item {
@@ -80,7 +80,7 @@ $height: 46px;
 
                 &:hover {
                     background-color: #eee;
-                    transition: .15 background-color ease-in;
+                    transition: 0.15 background-color ease-in;
                 }
             }
         }

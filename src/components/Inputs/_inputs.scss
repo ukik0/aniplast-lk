@@ -8,7 +8,7 @@
     .radio__input {
         display: none;
 
-        &:checked+.fake::before {
+        &:checked + .fake::before {
             opacity: 1;
         }
     }
@@ -17,7 +17,7 @@
         height: 15px;
         width: 15px;
         box-sizing: border-box;
-        border: 1px solid #8547C6;
+        border: 1px solid #8547c6;
         border-radius: 50%;
         display: block;
         margin-right: 15px;
@@ -36,7 +36,7 @@
             transform: translate(-50%, -50%);
             border-radius: 50%;
             opacity: 0;
-            transition: .3s all ease;
+            transition: 0.3s all ease;
         }
     }
 }
@@ -51,7 +51,7 @@
     .checkbox__input {
         display: none;
 
-        &:checked+.fake::before {
+        &:checked + .fake::before {
             opacity: 1;
         }
     }
@@ -60,7 +60,7 @@
         height: 15px;
         width: 15px;
         box-sizing: border-box;
-        border: 1px solid #8547C6;
+        border: 1px solid #8547c6;
         border-radius: 50%;
         display: block;
         margin-right: 15px;
@@ -72,14 +72,14 @@
             display: block;
             height: 9px;
             width: 9px;
-            background: #8547C6;
+            background: #8547c6;
             top: 50%;
             box-sizing: border-box;
             left: 50%;
             transform: translate(-50%, -50%);
             border-radius: 50%;
             opacity: 0;
-            transition: .3s all ease;
+            transition: 0.3s all ease;
         }
     }
 }

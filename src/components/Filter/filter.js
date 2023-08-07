@@ -1,45 +1,44 @@
 const list = document.querySelector('.list'),
-      items = document.querySelectorAll('.blocks__item')
-      listItems = document.querySelectorAll('.list__item')
+    items = document.querySelectorAll('.blocks__item');
+listItems = document.querySelectorAll('.list__item');
 
 function filter() {
-    list.addEventListener('click', event => {
-        const targetId = event.target.dataset.id
-        const target = event.target
+    list.addEventListener('click', (event) => {
+        const targetId = event.target.dataset.id;
+        const target = event.target;
 
-        if(target.classList.contains('list__item')) {
-            listItems.forEach(listItem => listItem.classList.remove('active'))
-            target.classList.add('active')
+        if (target.classList.contains('list__item')) {
+            listItems.forEach((listItem) => listItem.classList.remove('active'));
+            target.classList.add('active');
         }
 
-
-        switch(targetId) {
+        switch (targetId) {
             case 'all':
-                getItems('blocks__item')
-                break
+                getItems('blocks__item');
+                break;
             case 'winter':
-                getItems(targetId)
-                break
+                getItems(targetId);
+                break;
             case 'spring':
-                getItems(targetId)
-                break
+                getItems(targetId);
+                break;
             case 'autumn':
-                getItems(targetId)
-                break
+                getItems(targetId);
+                break;
             case 'summer':
-                getItems(targetId)
-                break
+                getItems(targetId);
+                break;
         }
-    })
+    });
 }
-filter()
+filter();
 
 function getItems(className) {
-    items.forEach(item => {
+    items.forEach((item) => {
         if (item.classList.contains(className)) {
-            item.style.display = 'block'
+            item.style.display = 'block';
         } else {
-            item.style.display = 'none'
+            item.style.display = 'none';
         }
-    })
+    });
 }

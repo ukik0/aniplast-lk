@@ -28,16 +28,19 @@
     opacity: 0;
     visibility: hidden;
     transform: translateY(10px);
-    transition: opacity .3s ease-in-out, transform .3s ease-in-out, visibility .3s ease-in-out;
+    transition:
+        opacity 0.3s ease-in-out,
+        transform 0.3s ease-in-out,
+        visibility 0.3s ease-in-out;
 }
 
-.tooltip__btn:hover+.tooltip__txt {
+.tooltip__btn:hover + .tooltip__txt {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
 }
 
-.tooltip__btn:focus+.tooltip__txt {
+.tooltip__btn:focus + .tooltip__txt {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
@@ -51,5 +54,5 @@
     padding: 0;
     overflow: hidden;
     border: 0;
-    clip: rect(0 0 0 0)
+    clip: rect(0 0 0 0);
 }

@@ -41,4 +41,9 @@ document.addEventListener('DOMContentLoaded', function () {
         $(this).parents('.categories__select').addClass('active').find('span').text($(this).text());
         $(this).parents('.categories__select').find('input').attr('value', $(this).attr('data-id'));
     });
+
+    // mask
+    if ($('#telephone').length) {
+        $('#telephone').mask('+7(999) 999-99-99');
+    }
 });

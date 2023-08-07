@@ -1,18 +1,151 @@
-<header>
-    <!-- Navbar -->
-    <nav>
+<header class="header">
+    <div class="header__wrap">
         <div class="container">
-            <div class="navbar">
-                <div class="logo"><a href="#"> #freelance </a></div>
-                <ul class="menu">
-                    <li class="menu__item"><a href="#" class="menu__item-link" data-scroll>Портфолио</a></li>
-                    <li class="menu__item"><a href="#" class="menu__item-link" data-scroll>Инфо</a></li>
-                    <li class="menu__item"><a href="#" class="menu__item-link" data-scroll>Контакты</a></li>
-                </ul>
-                <div class="burger">
-                    <span></span>
+            <div class="header__supheader">
+                <div class="header__supheader-burger hidden__desctop">
+                    <img src="../img/header/burger.svg" alt="" />
                 </div>
+                <div class="header__supheader-item header__supheader-item--big">
+                    <a href="tel:+7 988 777 66 55" class="header__supheader-telephone">
+                        <div class="header__supheader-img">
+                            <img src="../img/header/telephone.svg" alt="" />
+                        </div>
+                        <div class="header__supheader-text">+7 988 777 66 55</div>
+                    </a>
+                    <a href="mailto:info@aniplast.ru" class="header__supheader-mail">
+                        <div class="header__supheader-img">
+                            <img src="../img/header/mail.svg" alt="" />
+                        </div>
+                        <div class="header__supheader-text">info@aniplast.ru</div>
+                    </a>
+                </div>
+
+                <div class="header__supheader-item header__supheader-item--small search_input_click">
+                    <div class="header__supheader-img">
+                        <img src="../img/header/find.svg" alt="" />
+                    </div>
+                </div>
+                <!--                <div class="search_input">-->
+                <!--                    <form id="search_form">-->
+                <!--                        <input type="text" name="q" placeholder="Поиск.." />-->
+                <!--                    </form>-->
+                <!--                </div>-->
+                <!--                <div class="search_result">-->
+                <!--                    <ul></ul>-->
+                <!--                </div>-->
+                <!--                Not Authorized-->
+                <div class="header__supheader-item header__supheader-item--small">
+                    <div class="categories__select">
+                        <div class="categories__select-header">
+                            <span>RU</span>
+                            <img src="../img/header/arrow-language.svg" alt="стрелка" />
+                        </div>
+                        <input type="hidden" name="items" />
+                        <ul class="categories__select-body">
+                            <li id="item-1">RU</li>
+                            <li id="item-2">EN</li>
+                        </ul>
+                    </div>
+                </div>
+                                <div class="header__supheader-item header__supheader-item--medium">
+                                    <a href="#" class="header__supheader-user">
+                                        <div class="header__supheader-img">
+                                            <img src="../img/header/user.svg" alt="" />
+                                        </div>
+                                        <div class="header__supheader-text">Личный кабинет для дилеров</div>
+                                    </a>
+                                </div>
+
+                <!--                Authorized-->
+<!--                <div class="header__supheader-item header__nav-item&#45;&#45;small">-->
+<!--                    <a href="#" class="header__supheader-user">-->
+<!--                        <div class="header__supheader-text">Создать заказ</div>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--                <div class="header__supheader-item header__nav-item&#45;&#45;small">-->
+<!--                    <a href="#" class="header__supheader-user">-->
+<!--                        <div class="header__supheader-text">История заказов</div>-->
+<!--                    </a>-->
+<!--                </div>-->
+
+<!--                <div class="header__supheader-item header__nav-item&#45;&#45;small">-->
+<!--                    <a href="#" class="header__supheader-user">-->
+<!--                        <div class="header__supheader-img">-->
+<!--                            <img src="../img/header/user.svg" alt="" />-->
+<!--                        </div>-->
+<!--                        <div class="header__supheader-text">Выйти</div>-->
+<!--                    </a>-->
+<!--                </div>-->
             </div>
         </div>
-    </nav>
+    </div>
+    <div class="container">
+        <div class="header__nav">
+            <div class="header__nav-item header__nav-item--medium">
+                <a href="/" class="header__logo">
+                    <img src="../img/logo.png" alt="" />
+                </a>
+            </div>
+            <nav class="header__nav-links hidden__mobile">
+                <ul class="header__nav-items">
+                    <li class="header__nav-item header__nav-item--small">
+                        <a href="/about/">о компании</a>
+                    </li>
+                    <li class="header__nav-item header__nav-item--small">
+                        <a href="/catalog/">продукция</a>
+                    </li>
+                    <li class="header__nav-item header__nav-item--small">
+                        <a href="/dillers/">дилеры</a>
+                    </li>
+                    <li class="header__nav-item header__nav-item--small">
+                        <a href="/news/">новости</a>
+                    </li>
+                    <li class="header__nav-item header__nav-item--long header__nav-item--small">
+                        <a href="/sertifikaty/">сертификаты и лицензии</a>
+                    </li>
+                    <li class="header__nav-item header__nav-item--small">
+                        <a href="/maps/">где купить</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="mobile-menu hidden">
+        <div class="mobile-menu__close">
+            <img src="../img/close.svg" alt="" />
+        </div>
+<!--        Unauthorized-->
+        <ul class="mobile-menu__list">
+            <li class="mobile-menu__item">
+                <a href="/about/">О компании</a>
+            </li>
+            <li class="mobile-menu__item">
+                <a href="/catalog/">Продукция</a>
+            </li>
+            <li class="mobile-menu__item">
+                <a href="/dillers/">Дилеры</a>
+            </li>
+            <li class="mobile-menu__item">
+                <a href="/news/">Новости</a>
+            </li>
+            <li class="mobile-menu__item">
+                <a href="/sertifikaty/">Сертификаты и лицензии</a>
+            </li>
+            <li class="mobile-menu__item">
+                <a href="/maps/">Где купить</a>
+            </li>
+        </ul>
+<!--        Authorized-->
+<!--        <ul class="mobile-menu__list">-->
+<!--            <li class="mobile-menu__item">-->
+<!--                <a href="/about/">Создать заказ</a>-->
+<!--            </li>-->
+<!--            <li class="mobile-menu__item">-->
+<!--                <a href="/catalog/">История заказов</a>-->
+<!--            </li>-->
+<!--            <li class="mobile-menu__item">-->
+<!--                <a href="/dillers/">Выйти</a>-->
+<!--            </li>-->
+<!--        </ul>-->
+    </div>
 </header>

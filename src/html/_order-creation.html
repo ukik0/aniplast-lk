@@ -14,7 +14,7 @@
                 </div>
 
                 <div class="order-creation__info">
-                    <table cellpadding="0" cellspacing="0" class="order-creation__order-table">
+                    <table cellpadding="0" cellspacing="0" class="order-creation__order-table hidden__mobile">
                         <thead>
                             <tr class="order-creation__order-table-row">
                                 <td colspan="1" class="order-creation__order-table-cell">Артикул</td>
@@ -42,70 +42,74 @@
                         </tfoot>
                     </table>
 
-<!--                    <table-->
-<!--                        cellpadding="0"-->
-<!--                        cellspacing="0"-->
-<!--                        class="order-creation__order-table hidden__desctop"-->
-<!--                    >-->
-<!--                        <tbody>-->
-<!--                            <tr class="order-creation__order-table-row">-->
-<!--                                <td colspan="1" class="order-creation__order-table-cell">Артикул</td>-->
-<!--                                <td colspan="2" class="order-creation__order-table-cell">TLZ2585M</td>-->
-<!--                            </tr>-->
+                    <table
+                        cellpadding="0"
+                        cellspacing="0"
+                        class="order-creation__order-table hidden__desctop"
+                    >
+                        <tbody>
+                            <!--                            <tr class="order-creation__order-table-row">-->
+                            <!--                                <td colspan="1" class="order-creation__order-table-cell">Артикул</td>-->
+                            <!--                                <td colspan="2" class="order-creation__order-table-cell">TLZ2585M</td>-->
+                            <!--                            </tr>-->
 
-<!--                            <tr class="order-creation__order-table-row">-->
-<!--                                <td colspan="1" class="order-creation__order-table-cell">Название</td>-->
-<!--                                <td colspan="2" class="order-creation__order-table-cell">-->
-<!--                                    Трап из нерж. стал. с комб. затв. Киль 850мм вып 50ммб матовая-->
-<!--                                </td>-->
-<!--                            </tr>-->
+                            <!--                            <tr class="order-creation__order-table-row">-->
+                            <!--                                <td colspan="1" class="order-creation__order-table-cell">Название</td>-->
+                            <!--                                <td colspan="2" class="order-creation__order-table-cell">-->
+                            <!--                                    Трап из нерж. стал. с комб. затв. Киль 850мм вып 50ммб матовая-->
+                            <!--                                </td>-->
+                            <!--                            </tr>-->
 
-<!--                            <tr class="order-creation__order-table-row">-->
-<!--                                <td colspan="1" class="order-creation__order-table-cell">Штук в упаковке</td>-->
-<!--                                <td colspan="2" class="order-creation__order-table-cell">1</td>-->
-<!--                            </tr>-->
+                            <!--                            <tr class="order-creation__order-table-row">-->
+                            <!--                                <td colspan="1" class="order-creation__order-table-cell">Штук в упаковке</td>-->
+                            <!--                                <td colspan="2" class="order-creation__order-table-cell">1</td>-->
+                            <!--                            </tr>-->
 
-<!--                            <tr class="order-creation__order-table-row">-->
-<!--                                <td colspan="1" class="order-creation__order-table-cell">-->
-<!--                                    Количество упаковок-->
-<!--                                </td>-->
-<!--                                <td colspan="2" class="order-creation__order-table-cell">-->
-<!--                                    <button class="order-creation__order-table-btn decrement">-->
-<!--                                        <img src="../img/order-creation/decrement.svg" alt="decrement" />-->
-<!--                                    </button>-->
-<!--                                    <span class="order-creation__order-table-counter">1</span>-->
-<!--                                    <button class="order-creation__order-table-btn increment">-->
-<!--                                        <img src="../img/order-creation/increment.svg" alt="decrement" />-->
-<!--                                    </button>-->
-<!--                                </td>-->
-<!--                            </tr>-->
+                            <!--                            <tr class="order-creation__order-table-row">-->
+                            <!--                                <td colspan="1" class="order-creation__order-table-cell">-->
+                            <!--                                    Количество упаковок-->
+                            <!--                                </td>-->
+                            <!--                                <td colspan="2" class="order-creation__order-table-cell">-->
+                            <!--                                    <button class="order-creation__order-table-btn decrement">-->
+                            <!--                                        <img src="../img/order-creation/decrement.svg" alt="decrement" />-->
+                            <!--                                    </button>-->
+                            <!--                                    <span class="order-creation__order-table-counter">1</span>-->
+                            <!--                                    <button class="order-creation__order-table-btn increment">-->
+                            <!--                                        <img src="../img/order-creation/increment.svg" alt="decrement" />-->
+                            <!--                                    </button>-->
+                            <!--                                </td>-->
+                            <!--                            </tr>-->
 
-<!--                            <tr class="order-creation__order-table-row">-->
-<!--                                <td colspan="1" class="order-creation__order-table-cell">Объем упаковок</td>-->
-<!--                                <td colspan="2" class="order-creation__order-table-cell">0,1 м²</td>-->
-<!--                            </tr>-->
+                            <!--                            <tr class="order-creation__order-table-row">-->
+                            <!--                                <td colspan="1" class="order-creation__order-table-cell">Объем упаковок</td>-->
+                            <!--                                <td colspan="2" class="order-creation__order-table-cell">0,1 м²</td>-->
+                            <!--                            </tr>-->
 
-<!--                            <tr class="order-creation__order-table-row">-->
-<!--                                <td colspan="1" class="order-creation__order-table-cell">Сумма (без НДС)</td>-->
-<!--                                <td colspan="2" class="order-creation__order-table-cell">10 руб.</td>-->
-<!--                            </tr>-->
-<!--                        </tbody>-->
+                            <!--                            <tr class="order-creation__order-table-row">-->
+                            <!--                                <td colspan="1" class="order-creation__order-table-cell">Сумма (без НДС)</td>-->
+                            <!--                                <td colspan="2" class="order-creation__order-table-cell">10 руб.</td>-->
+                            <!--                            </tr>-->
+                        </tbody>
 
-<!--                        <tfoot>-->
-<!--                            <tr class="order-creation__order-table-row">-->
-<!--                                <td colspan="1" class="order-creation__order-table-cell">Итого</td>-->
-<!--                                <td colspan="2" class="order-creation__order-table-cell"></td>-->
-<!--                            </tr>-->
-<!--                            <tr class="order-creation__order-table-row">-->
-<!--                                <td colspan="1" class="order-creation__order-table-cell">Объем упаковок</td>-->
-<!--                                <td colspan="2" class="order-creation__order-table-cell">0,17 м²</td>-->
-<!--                            </tr>-->
-<!--                            <tr class="order-creation__order-table-row">-->
-<!--                                <td colspan="1" class="order-creation__order-table-cell">Сумма (без НДС)</td>-->
-<!--                                <td colspan="2" class="order-creation__order-table-cell">810 руб.</td>-->
-<!--                            </tr>-->
-<!--                        </tfoot>-->
-<!--                    </table>-->
+                        <tfoot>
+                            <tr class="order-creation__order-table-row">
+                                <td colspan="1" class="order-creation__order-table-cell">Итого</td>
+                                <td colspan="2" class="order-creation__order-table-cell"></td>
+                            </tr>
+                            <tr class="order-creation__order-table-row">
+                                <td colspan="1" class="order-creation__order-table-cell">Объем упаковок</td>
+                                <td colspan="2" class="order-creation__order-table-cell mobile size">
+                                    0,17 м²
+                                </td>
+                            </tr>
+                            <tr class="order-creation__order-table-row">
+                                <td colspan="1" class="order-creation__order-table-cell">Сумма (без НДС)</td>
+                                <td colspan="2" class="order-creation__order-table-cell mobile amount">
+                                    810 руб.
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
 
                     <button class="button order-creation__order-btn">
                         <span>Заказать</span>

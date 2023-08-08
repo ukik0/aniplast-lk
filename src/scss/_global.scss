@@ -156,6 +156,14 @@ body {
         padding: 4rem;
         position: relative;
 
+        &__body {
+            .order-creation__order-table-cell {
+                button {
+                    display: none;
+                }
+            }
+        }
+
         &__title {
             color: #292d32;
             font-size: 4.4rem;
@@ -163,6 +171,13 @@ body {
             font-weight: 500;
             line-height: 5rem;
             margin-bottom: 4rem;
+
+            @media (max-width: 48em) {
+                font-size: 6rem;
+                font-weight: 500;
+                line-height: 5.8rem;
+                max-width: 32rem;
+            }
         }
 
         &__close {

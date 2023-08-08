@@ -81,6 +81,10 @@
             color: #292d32;
             border-collapse: collapse;
 
+            &-wrapper {
+                position: relative;
+            }
+
             thead {
                 background: #fafafa;
                 color: #444;
@@ -106,7 +110,7 @@
             }
 
             &-row {
-                &:nth-child(6n) {
+                &:nth-child(7n) {
                     @media (max-width: 48em) {
                         border-bottom: 0.1rem solid #e2e2e2;
                     }
@@ -123,6 +127,10 @@
                 font-size: 1.6rem;
                 font-weight: 500;
                 line-height: 2.27rem;
+                
+                &.remove {
+                    text-align: end;
+                }
 
                 @media (max-width: 48em) {
                     border: 0;

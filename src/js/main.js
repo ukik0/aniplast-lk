@@ -79,7 +79,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     //Order creation
     let order = [];
-    const isMobile = window.matchMedia('only screen and (max-width: 768px)').matches;
+
+    const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+    const isMobile = mobileRegex.test(navigator.userAgent);
 
     const tableCheckboxes = document.querySelectorAll('.price__content-info-checkbox');
 
@@ -90,6 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const isChecked = input.checked;
 
             const row = input.closest('.price__content-info-table-row');
+
             const data = serializeDataRow(row, 'td', 1);
 
             if (isChecked) {
@@ -125,11 +128,66 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        const body = document.querySelector('.order-creation__order').querySelector('tbody');
-        body.innerHTML = orders
-            .map(({ article, name, count, price }) => {
-                return `
-            <tr class="order-creation__order-table-row">
+        const body = isMobile
+            ? document.querySelector('.order-creation__order-table.hidden__desctop').querySelector('tbody')
+            : document.querySelector('.order-creation__order-table.hidden__mobile').querySelector('tbody');
+
+        if (isMobile) {
+            body.innerHTML = orders
+                .map(({ article, name, count, price }) => {
+                    return `
+                <tr class="order-creation__order-table-row">
+                    <td colspan="1" class="order-creation__order-table-cell"></td>
+                    <td colspan="1" class="order-creation__order-table-cell remove" data-search="${article}">
+                           <button class="order-creation__order-table-remove-btn">
+                               <img src="../img/order-creation/remove-icon.svg" alt="remove" />
+                           </button>
+                     </td>
+                </tr>
+                <tr class="order-creation__order-table-row">
+                    <td colspan="1" class="order-creation__order-table-cell">Артикул</td>
+                    <td colspan="2" class="order-creation__order-table-cell article">${article}</td>
+                </tr>
+                <tr class="order-creation__order-table-row">
+                    <td colspan="1" class="order-creation__order-table-cell">Название</td>
+                    <td colspan="2" class="order-creation__order-table-cell">
+                        ${name}
+                    </td>
+                </tr>
+                <tr class="order-creation__order-table-row">
+                    <td colspan="1" class="order-creation__order-table-cell">Штук в упаковке</td>
+                    <td colspan="2" class="order-creation__order-table-cell">1</td>
+                </tr>
+                <tr class="order-creation__order-table-row">
+                    <td colspan="1" class="order-creation__order-table-cell">
+                        Количество упаковок
+                    </td>
+                    <td colspan="2" class="order-creation__order-table-cell counter" data-search="${article}">
+                        <button class="order-creation__order-table-btn decrement">
+                            <img src="../img/order-creation/decrement.svg" alt="decrement" />
+                        </button>
+                        <span class="order-creation__order-table-counter">${count}</span>
+                        <button class="order-creation__order-table-btn increment">
+                            <img src="../img/order-creation/increment.svg" alt="decrement" />
+                        </button>
+                    </td>
+                </tr>
+                <tr class="order-creation__order-table-row">
+                    <td colspan="1" class="order-creation__order-table-cell">Объем упаковок</td>
+                    <td colspan="2" class="order-creation__order-table-cell">0,1 м²</td>
+                </tr>
+                <tr class="order-creation__order-table-row">
+                    <td colspan="1" class="order-creation__order-table-cell">Сумма (без НДС)</td>
+                    <td colspan="2" class="order-creation__order-table-cell">${price}</td>
+                </tr>
+        `;
+                })
+                .join('');
+        } else {
+            body.innerHTML = orders
+                .map(({ article, name, count, price }) => {
+                    return `
+                <tr class="order-creation__order-table-row">
                    <td colspan="1" class="order-creation__order-table-cell">${article}</td>
                    <td colspan="2" class="order-creation__order-table-cell">
                        ${name}
@@ -151,56 +209,11 @@ document.addEventListener('DOMContentLoaded', function () {
                            <img src="../img/order-creation/remove-icon.svg" alt="remove" />
                        </button>
                    </td>
-            </tr>
+                </tr>
         `;
-            })
-            .join('');
-        // if (isMobile) {
-        //     body.innerHTML = orders
-        //         .map(({ article, name, count, price }) => {
-        //             return `
-        //     <tr class="order-creation__order-table-row">
-        //         <td colspan="1" class="order-creation__order-table-cell">Артикул</td>
-        //         <td colspan="2" class="order-creation__order-table-cell">${article}</td>
-        //     </tr>
-        //     <tr class="order-creation__order-table-row">
-        //         <td colspan="1" class="order-creation__order-table-cell">Название</td>
-        //         <td colspan="2" class="order-creation__order-table-cell">
-        //             ${name}
-        //         </td>
-        //     </tr>
-        //     <tr class="order-creation__order-table-row">
-        //         <td colspan="1" class="order-creation__order-table-cell">Штук в упаковке</td>
-        //         <td colspan="2" class="order-creation__order-table-cell">${count}</td>
-        //     </tr>
-        //     <tr class="order-creation__order-table-row">
-        //         <td colspan="1" class="order-creation__order-table-cell">
-        //             Количество упаковок
-        //         </td>
-        //         <td colspan="2" class="order-creation__order-table-cell counter">
-        //             <button class="order-creation__order-table-btn decrement">
-        //                 <img src="../img/order-creation/decrement.svg" alt="decrement" />
-        //             </button>
-        //             <span class="order-creation__order-table-counter">1</span>
-        //             <button class="order-creation__order-table-btn increment">
-        //                 <img src="../img/order-creation/increment.svg" alt="decrement" />
-        //             </button>
-        //         </td>
-        //     </tr>
-        //     <tr class="order-creation__order-table-row">
-        //         <td colspan="1" class="order-creation__order-table-cell">Объем упаковок</td>
-        //         <td colspan="2" class="order-creation__order-table-cell">0,1 м²</td>
-        //     </tr>
-        //     <tr class="order-creation__order-table-row">
-        //         <td colspan="1" class="order-creation__order-table-cell">Сумма (без НДС)</td>
-        //         <td colspan="2" class="order-creation__order-table-cell">${price}</td>
-        //     </tr>
-        // `;
-        //         })
-        //         .join('');
-        // } else {
-        //
-        // }
+                })
+                .join('');
+        }
 
         table.style.display = 'flex';
         existText.style.display = 'none';
@@ -217,13 +230,15 @@ document.addEventListener('DOMContentLoaded', function () {
         removeButtons.forEach((button) => {
             button.addEventListener('click', () => {
                 const row = button.closest('.order-creation__order-table-row');
+                const id = button.closest('td').dataset.search;
+
                 const { article } = serializeDataRow(row, 'td');
 
-                order = order.filter((order) => article !== order.article);
-                displayOrderList(order);
-
-                const cell = document.querySelector(`[data-id=${article}]`);
+                const cell = document.querySelector(`[data-id=${isMobile ? id : article}]`);
                 const input = cell.querySelector('input');
+
+                order = order.filter((order) => (isMobile ? id : article) !== order.article);
+                displayOrderList(order);
 
                 input.checked = !input.checked;
             });
@@ -239,12 +254,12 @@ document.addEventListener('DOMContentLoaded', function () {
         buttons.forEach((button) => {
             button.addEventListener('click', () => {
                 const row = button.closest('.order-creation__order-table-row');
-                console.log(button);
+                const id = button.closest('td').dataset.search;
 
                 const { article } = serializeDataRow(row, 'td');
 
                 order = order.map((order) => {
-                    const currentOrderItem = order.article === article;
+                    const currentOrderItem = order.article === (isMobile ? id : article);
 
                     if (currentOrderItem) {
                         if (button.classList.contains('increment') && order.count <= 9) {
@@ -266,8 +281,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //Update Order Data
     const updateOrderData = () => {
-        const amountNode = document.querySelector('.order-creation__order-table-cell.amount');
-        const sizeNode = document.querySelector('.order-creation__order-table-cell.size');
+        const amountNode = isMobile
+            ? document.querySelector('.order-creation__order-table-cell.mobile.amount')
+            : document.querySelector('.order-creation__order-table-cell.amount');
+        const sizeNode = isMobile
+            ? document.querySelector('.order-creation__order-table-cell.mobile.amount')
+            : document.querySelector('.order-creation__order-table-cell.size');
 
         const size = order.reduce((acc, order) => acc + +order.count, 0);
         const amount = order.reduce((acc, order) => acc + parseFloat(order.price) * order.count, 0);
@@ -307,7 +326,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const orderCreationButton = document.querySelector('.order-creation__order-btn');
 
     orderCreationButton.addEventListener('click', () => {
-        const table = document.querySelector('.order-creation__order-table').cloneNode(true);
+        const table = document
+            .querySelector(
+                isMobile ? '.order-creation__order-table.hidden__desctop' : '.order-creation__order-table'
+            )
+            .cloneNode(true);
         const body = document.querySelector('#order-creation').querySelector('.modal__body');
 
         body.appendChild(table);

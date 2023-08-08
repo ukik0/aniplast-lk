@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Index</title>
+        <link rel="stylesheet" href="./css/style.min.css" />
+    </head>
+
+    <body class="main__body">
+        <!-- Header -->
+        @@include('./html/_header.html')
+
+        <!-- Main Page -->
+        <main>
+            @@include('./html/_order-creation.html') @@include('./html/_price.html')
+            @@include('./html/_feedback.html')
+        </main>
+
+        <!-- Footer -->
+        @@include('./html/_footer.html')
+
+        <div class="modal__wrapper" id="order-creation">
+            <div class="modal">
+                <div class="modal__close">
+                    <img src="./img/cancel.svg" alt="cancel" width="10px" height="10px" />
+                </div>
+                <div class="modal__title"><span>Ваш заказ отправлен</span></div>
+                <div class="modal__body"></div>
+            </div>
+        </div>
+    </body>
+
+    <script src="./js/scripts.min.js"></script>
+</html>

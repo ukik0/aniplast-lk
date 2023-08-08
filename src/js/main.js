@@ -60,7 +60,256 @@ document.addEventListener('DOMContentLoaded', function () {
             $(eye).removeClass('open');
         }
     });
-    $('#showPass').click(function () {
-        $('#showPass i').toggle();
+    // Accordion
+    const items = document.querySelectorAll('.accordion__item-trigger');
+
+    items.forEach((item) => {
+        item.addEventListener('click', () => {
+            const parent = item.parentNode;
+
+            if (parent.classList.contains('accordion__item-active')) {
+                parent.classList.remove('accordion__item-active');
+            } else {
+                document
+                    .querySelectorAll('.accordion__item')
+                    .forEach((child) => child.classList.remove('accordion__item-active'));
+                parent.classList.add('accordion__item-active');
+            }
+        });
+    });
+    //Order creation
+    let order = [];
+    const isMobile = window.matchMedia('only screen and (max-width: 768px)').matches;
+
+    const tableCheckboxes = document.querySelectorAll('.price__content-info-checkbox');
+
+    tableCheckboxes.forEach((checkbox) => {
+        const input = checkbox.parentNode.querySelector('input');
+
+        input.addEventListener('change', () => {
+            const isChecked = input.checked;
+
+            const row = input.closest('.price__content-info-table-row');
+            const data = serializeDataRow(row, 'td', 1);
+
+            if (isChecked) {
+                order = [...order, data];
+
+                displayOrderList(order);
+                return;
+            }
+
+            order = order.filter(({ article }) => article !== data.article);
+            displayOrderList(order);
+        });
+    });
+
+    const serializeDataRow = (node, selector, slice = 0) =>
+        Array.from(node.querySelectorAll(selector))
+            .slice(slice)
+            .reduce((acc, node, index) => {
+                const names = ['article', 'name', 'count', 'price'];
+
+                acc[names[index]] = node.textContent;
+
+                return acc;
+            }, {});
+
+    const displayOrderList = (orders) => {
+        const table = document.querySelector('.order-creation__info');
+        const existText = document.querySelector('.order-creation__content .empty');
+
+        if (!orders.length) {
+            table.style.display = 'none';
+            existText.style.display = 'block';
+            return;
+        }
+
+        const body = document.querySelector('.order-creation__order').querySelector('tbody');
+        body.innerHTML = orders
+            .map(({ article, name, count, price }) => {
+                return `
+            <tr class="order-creation__order-table-row">
+                   <td colspan="1" class="order-creation__order-table-cell">${article}</td>
+                   <td colspan="2" class="order-creation__order-table-cell">
+                       ${name}
+                   </td>
+                   <td colspan="1" class="order-creation__order-table-cell">1</td>
+                   <td colspan="1" class="order-creation__order-table-cell counter">
+                       <button class="order-creation__order-table-btn decrement">
+                           <img src="../img/order-creation/decrement.svg" alt="decrement" />
+                       </button>
+                       <span class="order-creation__order-table-counter">${count}</span>
+                       <button class="order-creation__order-table-btn increment">
+                           <img src="../img/order-creation/increment.svg" alt="decrement" />
+                       </button>
+                   </td>
+                   <td colspan="1" class="order-creation__order-table-cell">0,1 м²</td>
+                   <td colspan="1" class="order-creation__order-table-cell">${price}</td>
+                   <td colspan="1" class="order-creation__order-table-cell">
+                       <button class="order-creation__order-table-remove-btn">
+                           <img src="../img/order-creation/remove-icon.svg" alt="remove" />
+                       </button>
+                   </td>
+            </tr>
+        `;
+            })
+            .join('');
+        // if (isMobile) {
+        //     body.innerHTML = orders
+        //         .map(({ article, name, count, price }) => {
+        //             return `
+        //     <tr class="order-creation__order-table-row">
+        //         <td colspan="1" class="order-creation__order-table-cell">Артикул</td>
+        //         <td colspan="2" class="order-creation__order-table-cell">${article}</td>
+        //     </tr>
+        //     <tr class="order-creation__order-table-row">
+        //         <td colspan="1" class="order-creation__order-table-cell">Название</td>
+        //         <td colspan="2" class="order-creation__order-table-cell">
+        //             ${name}
+        //         </td>
+        //     </tr>
+        //     <tr class="order-creation__order-table-row">
+        //         <td colspan="1" class="order-creation__order-table-cell">Штук в упаковке</td>
+        //         <td colspan="2" class="order-creation__order-table-cell">${count}</td>
+        //     </tr>
+        //     <tr class="order-creation__order-table-row">
+        //         <td colspan="1" class="order-creation__order-table-cell">
+        //             Количество упаковок
+        //         </td>
+        //         <td colspan="2" class="order-creation__order-table-cell counter">
+        //             <button class="order-creation__order-table-btn decrement">
+        //                 <img src="../img/order-creation/decrement.svg" alt="decrement" />
+        //             </button>
+        //             <span class="order-creation__order-table-counter">1</span>
+        //             <button class="order-creation__order-table-btn increment">
+        //                 <img src="../img/order-creation/increment.svg" alt="decrement" />
+        //             </button>
+        //         </td>
+        //     </tr>
+        //     <tr class="order-creation__order-table-row">
+        //         <td colspan="1" class="order-creation__order-table-cell">Объем упаковок</td>
+        //         <td colspan="2" class="order-creation__order-table-cell">0,1 м²</td>
+        //     </tr>
+        //     <tr class="order-creation__order-table-row">
+        //         <td colspan="1" class="order-creation__order-table-cell">Сумма (без НДС)</td>
+        //         <td colspan="2" class="order-creation__order-table-cell">${price}</td>
+        //     </tr>
+        // `;
+        //         })
+        //         .join('');
+        // } else {
+        //
+        // }
+
+        table.style.display = 'flex';
+        existText.style.display = 'none';
+
+        changeOrderCount();
+        removeOrder();
+        updateOrderData();
+    };
+
+    //Remove product from order
+    const removeOrder = () => {
+        const removeButtons = document.querySelectorAll('.order-creation__order-table-remove-btn');
+
+        removeButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                const row = button.closest('.order-creation__order-table-row');
+                const { article } = serializeDataRow(row, 'td');
+
+                order = order.filter((order) => article !== order.article);
+                displayOrderList(order);
+
+                const cell = document.querySelector(`[data-id=${article}]`);
+                const input = cell.querySelector('input');
+
+                input.checked = !input.checked;
+            });
+
+            updateOrderData();
+        });
+    };
+
+    //Increment And Decrement
+    const changeOrderCount = () => {
+        const buttons = document.querySelectorAll('.order-creation__order-table-cell.counter button');
+
+        buttons.forEach((button) => {
+            button.addEventListener('click', () => {
+                const row = button.closest('.order-creation__order-table-row');
+                console.log(button);
+
+                const { article } = serializeDataRow(row, 'td');
+
+                order = order.map((order) => {
+                    const currentOrderItem = order.article === article;
+
+                    if (currentOrderItem) {
+                        if (button.classList.contains('increment') && order.count <= 9) {
+                            order.count++;
+                        } else {
+                            if (button.classList.contains('decrement') && order.count > 1) {
+                                order.count--;
+                            }
+                        }
+                    }
+
+                    return order;
+                });
+                displayOrderList(order);
+                updateOrderData();
+            });
+        });
+    };
+
+    //Update Order Data
+    const updateOrderData = () => {
+        const amountNode = document.querySelector('.order-creation__order-table-cell.amount');
+        const sizeNode = document.querySelector('.order-creation__order-table-cell.size');
+
+        const size = order.reduce((acc, order) => acc + +order.count, 0);
+        const amount = order.reduce((acc, order) => acc + parseFloat(order.price) * order.count, 0);
+        amountNode.textContent = `${amount} руб.`;
+    };
+
+    //Modal
+    function bindModal(trigger, modal, close) {
+        (trigger = document.querySelector(trigger)),
+            (modal = document.querySelector(modal)),
+            (close = document.querySelector(close));
+
+        const body = document.body;
+
+        trigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.style.display = 'flex';
+            body.classList.add('locked');
+        });
+        close.addEventListener('click', () => {
+            modal.style.display = 'none';
+            body.classList.remove('locked');
+        });
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                body.classList.remove('locked');
+            }
+        });
+    }
+
+    // ПЕРВЫЙ аргумент - класс кнопки, при клике на которую будет открываться модальное окно.
+    // ВТОРОЙ аргумент - класс самого модального окна.
+    // ТРЕТИЙ аргумент - класс кнопки, при клике на которую будет закрываться модальное окно.
+    bindModal('.order-creation__order-btn', '.modal__wrapper', '.modal__close');
+
+    const orderCreationButton = document.querySelector('.order-creation__order-btn');
+
+    orderCreationButton.addEventListener('click', () => {
+        const table = document.querySelector('.order-creation__order-table').cloneNode(true);
+        const body = document.querySelector('#order-creation').querySelector('.modal__body');
+
+        body.appendChild(table);
     });
 });

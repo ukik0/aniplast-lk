@@ -1,0 +1,172 @@
+.order-creation {
+    margin-bottom: 16rem;
+
+    &__info {
+        display: none;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 3rem;
+    }
+
+    &__order {
+        .empty {
+            color: #292d32;
+            font-size: 1.6rem;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 2.278rem;
+
+            @media (max-width: 48em) {
+                font-size: 3rem;
+                line-height: normal;
+            }
+        }
+
+        &-btn {
+            padding: 1.9rem 2.3rem;
+            background: #6cc9f2;
+            border: 0;
+
+            span {
+                color: #fff;
+            }
+        }
+
+        &-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-bottom: 5rem;
+
+            @media (max-width: 48em) {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            &-title {
+                color: #292d32;
+                font-size: 4.4rem;
+                font-weight: 500;
+                line-height: 5rem;
+
+                @media (max-width: 48em) {
+                    font-size: 6rem;
+                    line-height: 5.8rem;
+                    margin-bottom: 4rem;
+                }
+            }
+
+            &-link {
+                padding: 1.55rem 2.3rem;
+
+                @media (max-width: 48em) {
+                    padding: 3rem 4.6rem;
+
+                    span {
+                        color: var(--black, #292d32);
+                        font-size: 3rem;
+                        line-height: normal;
+                    }
+                }
+            }
+        }
+
+        &-table {
+            width: 100%;
+            border: 0.1rem solid #e2e2e2;
+            font-size: 1.6rem;
+            font-weight: 500;
+            line-height: 2.27rem;
+            color: #292d32;
+            border-collapse: collapse;
+
+            thead {
+                background: #fafafa;
+                color: #444;
+
+                td {
+                    text-align: start;
+                }
+            }
+
+            tfoot {
+                height: 8rem;
+                width: 100%;
+                background: rgba(108, 201, 242, 0.2);
+
+                td {
+                    border-bottom: 0;
+                    background: inherit;
+
+                    &:nth-child(2n + 1) {
+                        background: transparent;
+                    }
+                }
+            }
+
+            &-row {
+                &:nth-child(6n) {
+                    @media (max-width: 48em) {
+                        border-bottom: 0.1rem solid #e2e2e2;
+                    }
+                }
+            }
+
+            &-cell {
+                padding: 1.7rem 2rem;
+                max-width: 57.5rem;
+                min-width: 8rem;
+                text-align: center;
+                border-bottom: 0.1rem solid #e2e2e2;
+                min-height: 6.69rem;
+                font-size: 1.6rem;
+                font-weight: 500;
+                line-height: 2.27rem;
+
+                @media (max-width: 48em) {
+                    border: 0;
+                    text-align: start;
+                    font-size: 3rem;
+                    font-weight: 500;
+                    line-height: normal;
+                }
+
+                &:not(:last-child) {
+                    border-right: 0.1rem solid #e2e2e2;
+
+                    @media (max-width: 48em) {
+                        border: 0;
+                    }
+                }
+
+                &:nth-child(2n + 1) {
+                    background: #fafafa;
+                }
+
+                &.counter {
+                    span {
+                        margin: 0 1rem;
+                        position: relative;
+                        top: -0.5rem;
+                    }
+
+                    img {
+                        width: 2.4rem;
+                        height: 2.4rem;
+                        object-fit: cover;
+                    }
+                }
+            }
+        }
+
+        &-table-btn {
+        }
+
+        &-table-counter {
+        }
+
+        &-table-remove-btn {
+        }
+    }
+}

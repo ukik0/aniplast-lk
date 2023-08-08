@@ -1,6 +1,5 @@
 .auth {
     &-form {
-        margin-top: 6rem;
         margin-bottom: 16rem;
 
         @media (max-width: 48em) {
@@ -152,6 +151,17 @@
                     display: block;
                 }
             }
+
+            img {
+                width: 1.8rem;
+                height: 1.2rem;
+                object-fit: cover;
+
+                @media (max-width: 48em) {
+                    width: 3.6rem;
+                    height: 2.4rem;
+                }
+            }
         }
 
         &:focus {
@@ -161,54 +171,7 @@
 
     &-form-btn {
         margin-top: 2.9rem;
-        display: flex;
-        align-items: center;
         padding: 1.9rem 2.3rem;
-        border: 0.15rem solid #292d32;
-        gap: 1.5rem;
-        transition: 0.3s all ease-in-out;
-
-        @media (max-width: 48em) {
-            padding: 3.8rem 9rem;
-            gap: 3rem;
-        }
-
-        span {
-            color: #292d32;
-            font-size: 1.5rem;
-            font-style: normal;
-            font-weight: 500;
-            line-height: normal;
-
-            @media (max-width: 48em) {
-                font-size: 3rem;
-                font-style: normal;
-                font-weight: 500;
-                line-height: normal;
-            }
-        }
-
-        &-arrow {
-            width: 0.9rem;
-            height: 0.9rem;
-            transition: 0.3s all ease-in-out;
-
-            @media (max-width: 48em) {
-                width: 1.8rem;
-                height: 1.8rem;
-            }
-        }
-
-        &:hover {
-            .auth-form-btn-arrow {
-                transform: rotate(45deg);
-            }
-
-            background: #6cc9f2;
-        }
-    }
-
-    &-form-btn-arrow {
     }
 
     &-form-image {

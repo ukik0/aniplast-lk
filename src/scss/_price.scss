@@ -1,5 +1,4 @@
 .price {
-    margin-bottom: 16rem;
 
     &__heading {
         display: flex;
@@ -101,22 +100,63 @@
             flex-direction: column;
             align-items: center;
             gap: 5rem;
+            width: 100%;
 
             &-table {
                 @extend .order-creation__order-table !optional;
                 display: block;
                 border-bottom: 0;
 
+                tbody {
+                    @media (max-width: 48em) {
+                        display: block;
+                    }
+
+                    td {
+                        &:first-child {
+                            &::before {
+                                height: 6rem;
+                            }
+                        }
+
+                        &:nth-child(3) {
+                            width: 100% !important;
+                            background: transparent !important;
+                            align-items: initial !important;
+                            padding-top: 0;
+                            overflow-y: hidden;
+                            text-align: start;
+                        }
+                    }
+                }
+
                 thead {
                     background: #fafafa;
                     color: #444;
+
+                    @media (max-width: 48em) {
+                        display: none;
+                    }
 
                     td {
                         text-align: center;
 
                         &:nth-child(5n + 3) {
                             text-align: start;
+
+                            @media (max-width: 48em) {
+                                text-align: initial;
+                            }
                         }
+                    }
+                }
+
+                &-row {
+                    @media (max-width: 48em) {
+                        display: block;
+                        width: 100%;
+                        border-bottom: 0.1rem solid #e2e2e2;
+                        background: #fafafa;
                     }
                 }
 
@@ -124,6 +164,24 @@
                     @extend .order-creation__order-table-cell !optional;
 
                     text-align: start;
+                    position: relative;
+
+                    @media (max-width: 48em) {
+                        display: flex;
+                        gap: 2.2rem;
+                        padding: 0;
+                        max-width: 100%;
+                        min-height: 8rem;
+
+                        &::before {
+                            content: attr(data-label);
+                            max-width: 20rem;
+                            width: 100%;
+                            text-align: start;
+                            background: #fafafa;
+                            padding: 0 2rem 2.2rem;
+                        }
+                    }
 
                     &:nth-child(5n + 1) {
                         text-align: center;
@@ -141,6 +199,12 @@
                         display: flex;
                         align-items: center;
                         justify-content: center;
+
+                        @media (max-width: 48em) {
+                            position: absolute;
+                            left: 2.4rem;
+                            top: 1.5rem;
+                        }
                     }
 
                     input {
@@ -159,60 +223,10 @@
                         height: 2.4rem;
                         width: 2.4rem;
                         cursor: pointer;
-                    }
-                }
-            }
-
-            &-pagination {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 1.3rem;
-
-                @media (max-width: 48em) {
-                    gap: 4.1rem;
-                }
-
-                a {
-                    svg {
-                        width: 2.4rem;
-                        height: 2.4rem;
 
                         @media (max-width: 48em) {
-                            width: 4.8rem;
-                            height: 4.8rem;
-                        }
-                    }
-                }
-
-                &-list {
-                    display: flex;
-                    align-items: center;
-                    gap: 1.3rem;
-
-                    @media (max-width: 48em) {
-                        gap: 2.6rem;
-                    }
-                }
-
-                &-item {
-                    color: #292d32;
-                    font-size: 1.5rem;
-                    font-style: normal;
-                    font-weight: 500;
-                    line-height: normal;
-
-                    @media (max-width: 48em) {
-                        font-size: 3rem;
-                    }
-
-                    &.active {
-                        color: #fff;
-                        background: #6cc9f2;
-                        padding: 0.7rem 1.7rem;
-
-                        @media (max-width: 48em) {
-                            padding: 1.4rem 3.4rem;
+                            width: 4rem;
+                            height: 4rem;
                         }
                     }
                 }

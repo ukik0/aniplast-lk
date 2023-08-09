@@ -144,6 +144,7 @@
 }
 
 .header__logo {
+    display: block;
     width: 29.2rem;
     height: 6rem;
 }
@@ -235,7 +236,7 @@
     .header {
         display: flex;
         flex-direction: column-reverse;
-        padding-bottom: 2rem;
+        padding-bottom: 4rem;
     }
     .header__wrap {
         border: none;

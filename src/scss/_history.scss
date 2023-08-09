@@ -1,0 +1,279 @@
+.history {
+    &__title {
+        display: block;
+        color: #292d32;
+        font-size: 4.4rem;
+        font-weight: 500;
+        line-height: 5rem;
+        margin-bottom: 5rem;
+
+        @media (max-width: 48em) {
+            font-size: 6rem;
+            line-height: 5.8rem;
+            margin-bottom: 6rem;
+        }
+    }
+
+    &__content {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 6.2rem;
+
+        @media (max-width: 48em) {
+            flex-direction: column;
+            gap: 6rem;
+        }
+
+        &-status {
+            max-width: 32rem;
+            width: 100%;
+
+            @media (max-width: 48em) {
+                max-width: 100%;
+            }
+
+            &-text {
+                color: #292d32;
+                font-size: 1.6rem;
+                font-weight: 500;
+                line-height: 2.27rem;
+
+                @media (max-width: 48em) {
+                    font-size: 3.2rem;
+                    line-height: 4.4rem;
+                }
+
+                &:not(:last-child) {
+                    margin-bottom: 2.2rem;
+
+                    @media (max-width: 48em) {
+                        margin-bottom: 2.2rem;
+                    }
+                }
+            }
+        }
+
+        &-info {
+            max-width: 100%;
+            width: 100%;
+            display: flex;
+            gap: 5rem;
+            flex-direction: column;
+
+            @media (max-width: 48em) {
+                gap: 8rem;
+            }
+        }
+
+        &-table {
+            width: 100%;
+            font-size: 1.6rem;
+            font-weight: 500;
+            line-height: 2.27rem;
+            color: #292d32;
+            border-collapse: collapse;
+
+            tbody {
+                td {
+                    &:nth-child(1) {
+                        width: 17.7rem;
+                    }
+
+                    &:nth-child(2) {
+                        width: 56.7rem;
+                        text-align: start;
+                    }
+
+                    &:nth-child(3) {
+                        width: 9.1rem;
+                    }
+
+                    &:nth-child(4) {
+                        width: 11.1rem;
+                    }
+
+                    &:nth-child(5) {
+                        width: 17.2rem;
+                    }
+                }
+            }
+
+            tfoot {
+                width: 100%;
+                background: rgba(108, 201, 242, 0.2);
+                height: 8rem;
+
+                @media (max-width: 48em) {
+                    display: block;
+                    padding: 3rem 2.2rem;
+                }
+
+                td {
+                    border: 0 !important;
+                    background: inherit;
+
+                    &:nth-child(2n + 1) {
+                        background: transparent;
+                    }
+
+                    &:first-child {
+                        text-align: start;
+                        padding-left: 6rem;
+                    }
+
+                    &::before {
+                        content: initial;
+                    }
+                }
+            }
+
+            &-row {
+                position: relative;
+
+                &:nth-child(7n) {
+                    @media (max-width: 48em) {
+                        border-bottom: 0.1rem solid #e2e2e2;
+                    }
+                }
+
+                @media (max-width: 48em) {
+                    display: grid;
+                    border-bottom: 1px solid #e2e2e2;
+                }
+            }
+
+            &-cell {
+                padding: 1.7rem 2rem;
+                max-width: 57.5rem;
+                min-width: 8rem;
+                text-align: center;
+                border-bottom: 0.1rem solid #e2e2e2;
+                min-height: 6.69rem;
+                font-size: 1.6rem;
+                font-weight: 500;
+                line-height: 2.27rem;
+
+                &:nth-child(4) {
+                    @media (max-width: 48em) {
+                        align-items: center;
+                    }
+                }
+
+                @media (max-width: 48em) {
+                    border: 0;
+                    text-align: start;
+                    font-size: 3rem;
+                    font-weight: 500;
+                    line-height: normal;
+                    display: flex;
+                    gap: 2.2rem;
+                    padding: 0;
+                    max-width: 100%;
+                    padding-top: 2rem;
+
+                    &::before {
+                        content: attr(data-label);
+                        max-width: 20rem;
+                        width: 100%;
+                        text-align: start;
+                        padding: 0 2rem 2.2rem;
+                    }
+                }
+
+                &:not(:last-child) {
+                    border-right: 0.1rem solid #e2e2e2;
+
+                    @media (max-width: 48em) {
+                        border: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    &__accordion {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3rem;
+
+        @media (max-width: 48em) {
+            gap: 4rem;
+        }
+
+        &-item {
+            width: 100%;
+
+            &-left {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        &-item-trigger {
+            background: #fafafa;
+            padding: 2.9rem 2rem;
+            gap: initial;
+
+            @media (max-width: 48em) {
+                padding: 4rem 3rem;
+            }
+        }
+
+        &-item-date {
+            margin: 0 6.4rem 0 1.5rem;
+            color: #292d32;
+            font-size: 1.8rem;
+            font-weight: 500;
+            line-height: normal;
+
+            @media (max-width: 48em) {
+                font-size: 3rem;
+                margin: 0 5rem 0 1rem;
+            }
+        }
+
+        &-item-status {
+            color: #ffbd2e;
+            font-size: 1.6rem;
+            font-weight: 500;
+            line-height: normal;
+
+            @media (max-width: 48em) {
+                font-size: 3rem;
+            }
+
+            &.--complete {
+                color: #6cc9f2;
+            }
+        }
+
+        &-item-btn {
+            border: 0;
+            color: #292d32;
+            font-size: 1.5rem;
+            font-weight: 500;
+            line-height: normal;
+
+            @media (max-width: 48em) {
+                padding: 0;
+                gap: 1.4rem;
+
+                span {
+                    font-size: 2.8rem;
+                    font-weight: 400;
+                }
+            }
+
+            &:hover {
+                background: initial;
+            }
+        }
+
+        &-content {
+            padding: 0;
+            border-top: 0;
+        }
+    }
+}

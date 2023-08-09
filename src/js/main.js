@@ -67,21 +67,11 @@ document.addEventListener('DOMContentLoaded', function () {
         item.addEventListener('click', () => {
             const parent = item.parentNode;
 
-            if (parent.classList.contains('accordion__item-active')) {
-                parent.classList.remove('accordion__item-active');
-            } else {
-                document
-                    .querySelectorAll('.accordion__item')
-                    .forEach((child) => child.classList.remove('accordion__item-active'));
-                parent.classList.add('accordion__item-active');
-            }
+            parent.classList.toggle('accordion__item-active');
         });
     });
     //Order creation
     let order = [];
-
-    const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
-    const isMobile = mobileRegex.test(navigator.userAgent);
 
     const tableCheckboxes = document.querySelectorAll('.price__content-info-checkbox');
 
@@ -128,72 +118,18 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        const body = isMobile
-            ? document.querySelector('.order-creation__order-table.hidden__desctop').querySelector('tbody')
-            : document.querySelector('.order-creation__order-table.hidden__mobile').querySelector('tbody');
+        const body = document.querySelector('.order-creation__order-table').querySelector('tbody');
 
-        if (isMobile) {
-            body.innerHTML = orders
-                .map(({ article, name, count, price }) => {
-                    return `
+        body.innerHTML = orders
+            .map(({ article, name, count, price }) => {
+                return `
                 <tr class="order-creation__order-table-row">
-                    <td colspan="1" class="order-creation__order-table-cell"></td>
-                    <td colspan="1" class="order-creation__order-table-cell remove" data-search="${article}">
-                           <button class="order-creation__order-table-remove-btn">
-                               <img src="../img/order-creation/remove-icon.svg" alt="remove" />
-                           </button>
-                     </td>
-                </tr>
-                <tr class="order-creation__order-table-row">
-                    <td colspan="1" class="order-creation__order-table-cell">Артикул</td>
-                    <td colspan="2" class="order-creation__order-table-cell article">${article}</td>
-                </tr>
-                <tr class="order-creation__order-table-row">
-                    <td colspan="1" class="order-creation__order-table-cell">Название</td>
-                    <td colspan="2" class="order-creation__order-table-cell">
-                        ${name}
-                    </td>
-                </tr>
-                <tr class="order-creation__order-table-row">
-                    <td colspan="1" class="order-creation__order-table-cell">Штук в упаковке</td>
-                    <td colspan="2" class="order-creation__order-table-cell">1</td>
-                </tr>
-                <tr class="order-creation__order-table-row">
-                    <td colspan="1" class="order-creation__order-table-cell">
-                        Количество упаковок
-                    </td>
-                    <td colspan="2" class="order-creation__order-table-cell counter" data-search="${article}">
-                        <button class="order-creation__order-table-btn decrement">
-                            <img src="../img/order-creation/decrement.svg" alt="decrement" />
-                        </button>
-                        <span class="order-creation__order-table-counter">${count}</span>
-                        <button class="order-creation__order-table-btn increment">
-                            <img src="../img/order-creation/increment.svg" alt="decrement" />
-                        </button>
-                    </td>
-                </tr>
-                <tr class="order-creation__order-table-row">
-                    <td colspan="1" class="order-creation__order-table-cell">Объем упаковок</td>
-                    <td colspan="2" class="order-creation__order-table-cell">0,1 м²</td>
-                </tr>
-                <tr class="order-creation__order-table-row">
-                    <td colspan="1" class="order-creation__order-table-cell">Сумма (без НДС)</td>
-                    <td colspan="2" class="order-creation__order-table-cell">${price}</td>
-                </tr>
-        `;
-                })
-                .join('');
-        } else {
-            body.innerHTML = orders
-                .map(({ article, name, count, price }) => {
-                    return `
-                <tr class="order-creation__order-table-row">
-                   <td colspan="1" class="order-creation__order-table-cell">${article}</td>
-                   <td colspan="2" class="order-creation__order-table-cell">
+                   <td data-label="Артикул" colspan="1" class="order-creation__order-table-cell">${article}</td>
+                   <td data-label="Название" colspan="2" class="order-creation__order-table-cell">
                        ${name}
                    </td>
-                   <td colspan="1" class="order-creation__order-table-cell">1</td>
-                   <td colspan="1" class="order-creation__order-table-cell counter">
+                   <td data-label="Штук в упаковке" colspan="1" class="order-creation__order-table-cell">1</td>
+                   <td data-label="Количество упаковок" colspan="1" class="order-creation__order-table-cell counter">
                        <button class="order-creation__order-table-btn decrement">
                            <img src="../img/order-creation/decrement.svg" alt="decrement" />
                        </button>
@@ -202,8 +138,8 @@ document.addEventListener('DOMContentLoaded', function () {
                            <img src="../img/order-creation/increment.svg" alt="decrement" />
                        </button>
                    </td>
-                   <td colspan="1" class="order-creation__order-table-cell">0,1 м²</td>
-                   <td colspan="1" class="order-creation__order-table-cell">${price}</td>
+                   <td data-label="Объем упаковок" colspan="1" class="order-creation__order-table-cell">0,1 м²</td>
+                   <td data-label="Сумма (без НДС)" colspan="1" class="order-creation__order-table-cell">${price}</td>
                    <td colspan="1" class="order-creation__order-table-cell">
                        <button class="order-creation__order-table-remove-btn">
                            <img src="../img/order-creation/remove-icon.svg" alt="remove" />
@@ -211,9 +147,8 @@ document.addEventListener('DOMContentLoaded', function () {
                    </td>
                 </tr>
         `;
-                })
-                .join('');
-        }
+            })
+            .join('');
 
         table.style.display = 'flex';
         existText.style.display = 'none';
@@ -230,14 +165,13 @@ document.addEventListener('DOMContentLoaded', function () {
         removeButtons.forEach((button) => {
             button.addEventListener('click', () => {
                 const row = button.closest('.order-creation__order-table-row');
-                const id = button.closest('td').dataset.search;
 
                 const { article } = serializeDataRow(row, 'td');
 
-                const cell = document.querySelector(`[data-id=${isMobile ? id : article}]`);
+                const cell = document.querySelector(`[data-id=${article}]`);
                 const input = cell.querySelector('input');
 
-                order = order.filter((order) => (isMobile ? id : article) !== order.article);
+                order = order.filter((order) => article !== order.article);
                 displayOrderList(order);
 
                 input.checked = !input.checked;
@@ -254,12 +188,11 @@ document.addEventListener('DOMContentLoaded', function () {
         buttons.forEach((button) => {
             button.addEventListener('click', () => {
                 const row = button.closest('.order-creation__order-table-row');
-                const id = button.closest('td').dataset.search;
 
                 const { article } = serializeDataRow(row, 'td');
 
                 order = order.map((order) => {
-                    const currentOrderItem = order.article === (isMobile ? id : article);
+                    const currentOrderItem = order.article === article;
 
                     if (currentOrderItem) {
                         if (button.classList.contains('increment') && order.count <= 9) {
@@ -281,12 +214,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //Update Order Data
     const updateOrderData = () => {
-        const amountNode = isMobile
-            ? document.querySelector('.order-creation__order-table-cell.mobile.amount')
-            : document.querySelector('.order-creation__order-table-cell.amount');
-        const sizeNode = isMobile
-            ? document.querySelector('.order-creation__order-table-cell.mobile.amount')
-            : document.querySelector('.order-creation__order-table-cell.size');
+        const amountNode = document.querySelector('.order-creation__order-table-cell.amount');
+        const sizeNode = document.querySelector('.order-creation__order-table-cell.size');
 
         const size = order.reduce((acc, order) => acc + +order.count, 0);
         const amount = order.reduce((acc, order) => acc + parseFloat(order.price) * order.count, 0);
@@ -305,15 +234,21 @@ document.addEventListener('DOMContentLoaded', function () {
             e.preventDefault();
             modal.style.display = 'flex';
             body.classList.add('locked');
+
+            appendTable();
         });
         close.addEventListener('click', () => {
             modal.style.display = 'none';
             body.classList.remove('locked');
+
+            removeTable();
         });
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 modal.style.display = 'none';
                 body.classList.remove('locked');
+
+                removeTable();
             }
         });
     }
@@ -323,16 +258,18 @@ document.addEventListener('DOMContentLoaded', function () {
     // ТРЕТИЙ аргумент - класс кнопки, при клике на которую будет закрываться модальное окно.
     bindModal('.order-creation__order-btn', '.modal__wrapper', '.modal__close');
 
-    const orderCreationButton = document.querySelector('.order-creation__order-btn');
-
-    orderCreationButton.addEventListener('click', () => {
-        const table = document
-            .querySelector(
-                isMobile ? '.order-creation__order-table.hidden__desctop' : '.order-creation__order-table'
-            )
-            .cloneNode(true);
+    //Add table to modal
+    const appendTable = () => {
+        const table = document.querySelector('.order-creation__order-table').cloneNode(true);
         const body = document.querySelector('#order-creation').querySelector('.modal__body');
 
         body.appendChild(table);
-    });
+    };
+
+    // Remove table from modal after close
+    const removeTable = () => {
+        const body = document.querySelector('#order-creation').querySelector('.modal__body');
+
+        body.textContent = '';
+    };
 });

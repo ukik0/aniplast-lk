@@ -5,6 +5,14 @@ body {
     }
 }
 
+section {
+    margin-bottom: 16rem;
+
+    @media (max-width: 48em) {
+        margin-bottom: 24rem;
+    }
+}
+
 .hidden__desctop {
     display: none !important;
 }
@@ -156,8 +164,17 @@ body {
         padding: 4rem;
         position: relative;
 
+        @media (max-width: 48em) {
+            max-height: 90em;
+            overflow-x: scroll;
+        }
+
         &__body {
-            .order-creation__order-table-cell {
+            td {
+                &:last-child {
+                    display: none;
+                }
+
                 button {
                     display: none;
                 }
@@ -189,6 +206,61 @@ body {
             position: absolute;
             right: 4rem;
             top: 4rem;
+        }
+    }
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.3rem;
+
+    @media (max-width: 48em) {
+        gap: 4.1rem;
+    }
+
+    a {
+        svg {
+            width: 2.4rem;
+            height: 2.4rem;
+
+            @media (max-width: 48em) {
+                width: 4.8rem;
+                height: 4.8rem;
+            }
+        }
+    }
+
+    &-list {
+        display: flex;
+        align-items: center;
+        gap: 1.3rem;
+
+        @media (max-width: 48em) {
+            gap: 2.6rem;
+        }
+    }
+
+    &-item {
+        color: #292d32;
+        font-size: 1.5rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+
+        @media (max-width: 48em) {
+            font-size: 3rem;
+        }
+
+        &.active {
+            color: #fff;
+            background: #6cc9f2;
+            padding: 0.7rem 1.7rem;
+
+            @media (max-width: 48em) {
+                padding: 1.4rem 3.4rem;
+            }
         }
     }
 }

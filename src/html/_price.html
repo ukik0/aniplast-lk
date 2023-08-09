@@ -13,8 +13,8 @@
         </div>
         <div class="price__content">
             <aside class="price__content-articles">
-                <div class="accordion">
-                    <div class="accordion__item">
+                <ul class="accordion">
+                    <li class="accordion__item">
                         <div class="accordion__item-trigger">
                             <div class="trigger__text">Найти по коду артикула</div>
                             <svg
@@ -45,21 +45,23 @@
                                 <a href="#" class="price__content-articles-item">VK</a>
                             </ul>
                         </div>
-                    </div>
-                </div>
+                    </li>
+                </ul>
             </aside>
 
             <div class="price__content-info">
                 <table cellpadding="0" cellspacing="0" class="price__content-info-table">
                     <thead>
                         <tr class="price__content-info-table-row">
-                            <td colspan="1" class="price__content-info-table-cell"></td>
-                            <td colspan="1" class="price__content-info-table-cell">Артикул</td>
-                            <td colspan="2" class="price__content-info-table-cell">Название</td>
-                            <td colspan="1" class="price__content-info-table-cell">Штук в упаковке</td>
-                            <td colspan="1" class="price__content-info-table-cell">
+                            <th scope="col" colspan="1" class="price__content-info-table-cell"></th>
+                            <th scope="col" colspan="1" class="price__content-info-table-cell">Артикул</th>
+                            <th scope="col" colspan="2" class="price__content-info-table-cell">Название</th>
+                            <th scope="col" colspan="1" class="price__content-info-table-cell">
+                                Штук в упаковке
+                            </th>
+                            <th scope="col" colspan="1" class="price__content-info-table-cell">
                                 Цена за штуку (без НДС)
-                            </td>
+                            </th>
                         </tr>
                     </thead>
 
@@ -71,12 +73,26 @@
                                     <span class="price__content-info-checkbox" />
                                 </label>
                             </td>
-                            <td colspan="1" class="price__content-info-table-cell">TLZ2585M</td>
-                            <td colspan="2" class="price__content-info-table-cell">
+                            <td data-label="Артикул" colspan="1" class="price__content-info-table-cell">
+                                TLZ2585M
+                            </td>
+                            <td data-label="Название" colspan="2" class="price__content-info-table-cell">
                                 Трап из&nbsp;нерж. стал.&nbsp;с&nbsp;комб. затв. Киль 850мм вып 50ммб матовая
                             </td>
-                            <td colspan="1" class="price__content-info-table-cell">1</td>
-                            <td colspan="1" class="price__content-info-table-cell">10 руб.</td>
+                            <td
+                                data-label="Штук в упаковке"
+                                colspan="1"
+                                class="price__content-info-table-cell"
+                            >
+                                1
+                            </td>
+                            <td
+                                data-label="Цена за штуку (без НДС)"
+                                colspan="1"
+                                class="price__content-info-table-cell"
+                            >
+                                10 руб.
+                            </td>
                         </tr>
 
                         <tr class="price__content-info-table-row">
@@ -86,12 +102,26 @@
                                     <span class="price__content-info-checkbox" />
                                 </label>
                             </td>
-                            <td colspan="1" class="price__content-info-table-cell">TLZ</td>
-                            <td colspan="2" class="price__content-info-table-cell">
+                            <td data-label="Артикул" colspan="1" class="price__content-info-table-cell">
+                                TLZ
+                            </td>
+                            <td data-label="Название" colspan="2" class="price__content-info-table-cell">
                                 Трап из&nbsp;нерж. стал.&nbsp;с&nbsp;комб. затв. Киль 850мм вып 50ммб матовая
                             </td>
-                            <td colspan="1" class="price__content-info-table-cell">1</td>
-                            <td colspan="1" class="price__content-info-table-cell">10 руб.</td>
+                            <td
+                                data-label="Штук в упаковке"
+                                colspan="1"
+                                class="price__content-info-table-cell"
+                            >
+                                1
+                            </td>
+                            <td
+                                data-label="Цена за штуку (без НДС)"
+                                colspan="1"
+                                class="price__content-info-table-cell"
+                            >
+                                10 руб.
+                            </td>
                         </tr>
 
                         <tr class="price__content-info-table-row">
@@ -101,17 +131,31 @@
                                     <span class="price__content-info-checkbox" />
                                 </label>
                             </td>
-                            <td colspan="1" class="price__content-info-table-cell">TQ1110</td>
-                            <td colspan="2" class="price__content-info-table-cell">
+                            <td data-label="Артикул" colspan="1" class="price__content-info-table-cell">
+                                TQ1110
+                            </td>
+                            <td data-label="Название" colspan="2" class="price__content-info-table-cell">
                                 Трап из&nbsp;нерж. стал.&nbsp;с&nbsp;комб. затв. Киль 850мм вып 50ммб матовая
                             </td>
-                            <td colspan="1" class="price__content-info-table-cell">1</td>
-                            <td colspan="1" class="price__content-info-table-cell">10 руб.</td>
+                            <td
+                                data-label="Штук в упаковке"
+                                colspan="1"
+                                class="price__content-info-table-cell"
+                            >
+                                1
+                            </td>
+                            <td
+                                data-label="Цена за штуку (без НДС)"
+                                colspan="1"
+                                class="price__content-info-table-cell"
+                            >
+                                10 руб.
+                            </td>
                         </tr>
                     </tbody>
                 </table>
 
-                <div class="price__content-info-pagination">
+                <div class="price__content-info-pagination pagination">
                     <a href="#" class="price__content-info-pagination-prev">
                         <svg
                             width="23"
@@ -130,12 +174,12 @@
                         </svg>
                     </a>
 
-                    <ul class="price__content-info-pagination-list">
-                        <a href="#" class="price__content-info-pagination-item active">1</a>
-                        <a href="#" class="price__content-info-pagination-item">2</a>
-                        <a href="#" class="price__content-info-pagination-item">3</a>
-                        <a href="#" class="price__content-info-pagination-item">4</a>
-                        <a href="#" class="price__content-info-pagination-item">5</a>
+                    <ul class="price__content-info-pagination-list pagination-list">
+                        <a href="#" class="price__content-info-pagination-item active pagination-item">1</a>
+                        <a href="#" class="price__content-info-pagination-item pagination-item">2</a>
+                        <a href="#" class="price__content-info-pagination-item pagination-item">3</a>
+                        <a href="#" class="price__content-info-pagination-item pagination-item">4</a>
+                        <a href="#" class="price__content-info-pagination-item pagination-item">5</a>
                     </ul>
 
                     <a href="#" class="price__content-info-pagination-next">

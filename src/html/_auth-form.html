@@ -6,19 +6,19 @@
 
                 <form action="#">
                     <div class="auth-form-row">
-                        <input type="email" placeholder="Введите ваш Логин" id="login" name="login" />
+                        <input class="input-error" type="email" placeholder="Введите ваш Логин" id="login" name="login" />
                         <label for="login">Логин</label>
-                        <!--                        <span class="error"> Неверно указан логин! </span>-->
+                        <span class="error"> Неверно указан логин! </span>
                     </div>
 
                     <div class="auth-form-row">
-                        <input type="password" placeholder="Введите пароль" id="password" name="login" />
+                        <input class="input-error" type="password" placeholder="Введите пароль" id="password" name="login" />
                         <label for="password">Пароль</label>
                         <span class="toggle-password">
                             <img src="../img/auth-form/eye-close.svg" alt="toggle password" />
                             <img class="hidden" src="../img/auth-form/eye-open.svg" alt="toggle password" />
                         </span>
-                        <!--                        <span class="error">Неверный пароль!</span>-->
+                        <span class="error">Неверный пароль!</span>
                     </div>
 
                     <button type="submit" class="button auth-form-btn">

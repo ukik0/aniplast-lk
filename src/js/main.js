@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (document.querySelector('.mobile-menu')) {
         const mobileMenu = document.querySelector('.mobile-menu'),
             menuButtonToggle = document.querySelector('.header__supheader-burger'),
-            body = document.querySelector('body'),
             closeModal = document.querySelector('.mobile-menu__close');
 
         menuButtonToggle.addEventListener('click', (e) => {
@@ -12,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const menuHandler = () => {
                 mobileMenu.classList.toggle('hidden');
-                body.classList.toggle('noscroll');
+                lockBody('add');
             };
 
             if (target.closest('.header__supheader-burger')) {
@@ -20,9 +19,34 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        closeModal.addEventListener('click', (e) => {
+        closeModal.addEventListener('click', () => {
             mobileMenu.classList.add('hidden');
-            body.classList.remove('noscroll');
+            lockBody('remove');
+        });
+    }
+
+    const lockBody = (action) => {
+        const body = document.querySelector('body');
+        body.classList[action]('noscroll');
+    };
+    // mobile authorized user menu
+    const userIcon = document.querySelector('.header__supheader-user');
+
+    if (userIcon) {
+        userIcon.addEventListener('click', () => {
+            const mobileMenu = document.querySelector('.mobile-user-menu'),
+                closeButton = mobileMenu.querySelector('.mobile-menu__close');
+
+            mobileMenu.classList.toggle('hidden');
+            userIcon.classList.toggle('--active');
+
+            lockBody('add');
+
+            closeButton.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                lockBody('remove');
+                userIcon.classList.remove('--active');
+            });
         });
     }
 
@@ -63,39 +87,43 @@ document.addEventListener('DOMContentLoaded', function () {
     // Accordion
     const items = document.querySelectorAll('.accordion__item-trigger');
 
-    items.forEach((item) => {
-        item.addEventListener('click', () => {
-            const parent = item.parentNode;
+    if (items.length) {
+        items.forEach((item) => {
+            item.addEventListener('click', () => {
+                const parent = item.parentNode;
 
-            parent.classList.toggle('accordion__item-active');
+                parent.classList.toggle('accordion__item-active');
+            });
         });
-    });
+    }
     //Order creation
     let order = [];
 
     const tableCheckboxes = document.querySelectorAll('.price__content-info-checkbox');
 
-    tableCheckboxes.forEach((checkbox) => {
-        const input = checkbox.parentNode.querySelector('input');
+    if (tableCheckboxes.length) {
+        tableCheckboxes.forEach((checkbox) => {
+            const input = checkbox.parentNode.querySelector('input');
 
-        input.addEventListener('change', () => {
-            const isChecked = input.checked;
+            input.addEventListener('change', () => {
+                const isChecked = input.checked;
 
-            const row = input.closest('.price__content-info-table-row');
+                const row = input.closest('.price__content-info-table-row');
 
-            const data = serializeDataRow(row, 'td', 1);
+                const data = serializeDataRow(row, 'td', 1);
 
-            if (isChecked) {
-                order = [...order, data];
+                if (isChecked) {
+                    order = [...order, data];
 
+                    displayOrderList(order);
+                    return;
+                }
+
+                order = order.filter(({ article }) => article !== data.article);
                 displayOrderList(order);
-                return;
-            }
-
-            order = order.filter(({ article }) => article !== data.article);
-            displayOrderList(order);
+            });
         });
-    });
+    }
 
     const serializeDataRow = (node, selector, slice = 0) =>
         Array.from(node.querySelectorAll(selector))
@@ -130,13 +158,15 @@ document.addEventListener('DOMContentLoaded', function () {
                    </td>
                    <td data-label="Штук в упаковке" colspan="1" class="order-creation__order-table-cell">1</td>
                    <td data-label="Количество упаковок" colspan="1" class="order-creation__order-table-cell counter">
-                       <button class="order-creation__order-table-btn decrement">
-                           <img src="../img/order-creation/decrement.svg" alt="decrement" />
-                       </button>
-                       <span class="order-creation__order-table-counter">${count}</span>
-                       <button class="order-creation__order-table-btn increment">
-                           <img src="../img/order-creation/increment.svg" alt="decrement" />
-                       </button>
+                       <div>
+                           <button class="order-creation__order-table-btn decrement">
+                               <img src="../img/order-creation/decrement.svg" alt="decrement" />
+                           </button>
+                           <span class="order-creation__order-table-counter">${count}</span>
+                           <button class="order-creation__order-table-btn increment">
+                               <img src="../img/order-creation/increment.svg" alt="decrement" />
+                           </button>
+                        </div>
                    </td>
                    <td data-label="Объем упаковок" colspan="1" class="order-creation__order-table-cell">0,1 м²</td>
                    <td data-label="Сумма (без НДС)" colspan="1" class="order-creation__order-table-cell">${price}</td>
@@ -229,6 +259,8 @@ document.addEventListener('DOMContentLoaded', function () {
             (close = document.querySelector(close));
 
         const body = document.body;
+
+        if (!modal) return;
 
         trigger.addEventListener('click', (e) => {
             e.preventDefault();

@@ -7,7 +7,10 @@
                 <ul class="accordion">
                     <li class="accordion__item">
                         <div class="accordion__item-trigger">
-                            <div class="trigger__text">По статусу заказа</div>
+                            <div class="trigger__text">
+                                <span class="hidden__mobile">По статусу заказа</span>
+                                <span class="hidden__desctop">Найти по коду артикула</span>
+                            </div>
                             <svg
                                 width="24"
                                 height="23"
@@ -25,8 +28,8 @@
                             </svg>
                         </div>
                         <div class="accordion__item-content">
-                            <p class="history__content-status-text">В работе</p>
-                            <p class="history__content-status-text">Выполнен</p>
+                            <p class="history__content-status-text --active">В работе</p>
+                            <p class="history__content-status-text">Выполнено</p>
                         </div>
                     </li>
                 </ul>
@@ -55,102 +58,85 @@
                                 <time class="history__accordion-item-date"> 03.02.23 </time>
                                 <span class="history__accordion-item-status"> В работе </span>
                             </div>
-                            <button class="button history__accordion-item-btn">
+                            <a href="#" class="button history__accordion-item-btn">
                                 <span>Повторить</span>
                                 <span class="button-arrow history__accordion-item-btn-arrow">
                                     <img src="../img/news/arrow-news.svg" alt="repeat" />
                                 </span>
-                            </button>
+                            </a>
                         </div>
                         <div class="accordion__item-content history__accordion-content">
                             <table cellpadding="0" cellspacing="0" class="history__content-table">
                                 <tbody>
                                     <tr class="history__content-table-row">
-                                        <td
-                                            data-label="Артикул"
-                                            colspan="1"
-                                            class="history__content-table-cell"
-                                        >
-                                            TLZ2585M
-                                        </td>
-                                        <td
-                                            data-label="Название"
-                                            colspan="2"
-                                            class="history__content-table-cell"
-                                        >
+                                        <td class="history__content-table-cell">TLZ2585M</td>
+                                        <td class="history__content-table-cell">
                                             Трап из&nbsp;нерж. стал.&nbsp;с&nbsp;комб. затв. Киль 850мм вып
                                             50ммб матовая
                                         </td>
-                                        <td
-                                            data-label="Штук в упаковке"
-                                            colspan="1"
-                                            class="history__content-table-cell"
-                                        >
-                                            1 шт.
+                                        <td class="history__content-table-cell hidden__mobile">1 шт.</td>
+                                        <td class="history__content-table-cell hidden__desctop">
+                                            <div>1 шт.</div>
+                                            <div>0,1 м²</div>
+                                            <div>10 руб.</div>
                                         </td>
-                                        <td
-                                            data-label="Объем упаковок"
-                                            colspan="1"
-                                            class="history__content-table-cell"
-                                        >
-                                            0,1 м²
-                                        </td>
-                                        <td
-                                            data-label="Сумма (без НДС)"
-                                            colspan="1"
-                                            class="history__content-table-cell"
-                                        >
-                                            10 руб.
-                                        </td>
+                                        <td class="history__content-table-cell hidden__mobile">0,1 м²</td>
+                                        <td class="history__content-table-cell hidden__mobile">10 руб.</td>
                                     </tr>
                                     <tr class="history__content-table-row">
-                                        <td
-                                            data-label="Артикул"
-                                            colspan="1"
-                                            class="history__content-table-cell"
-                                        >
-                                            TQ1110
+                                        <td class="history__content-table-cell">TQ1110</td>
+                                        <td class="history__content-table-cell">
+                                            Трап гор. вып. 110, н/р реш. 15х15 пласт. 15B110N-P
                                         </td>
-                                        <td
-                                            data-label="Название"
-                                            colspan="2"
-                                            class="history__content-table-cell"
-                                        >
-                                            Трап из&nbsp;нерж. стал.&nbsp;с&nbsp;комб. затв. Киль 850мм вып
-                                            50ммб матовая
+                                        <td class="history__content-table-cell hidden__mobile">1 шт.</td>
+                                        <td class="history__content-table-cell hidden__desctop">
+                                            <div>4 шт.</div>
+                                            <div>0,16 м²</div>
+                                            <div>800 руб.</div>
                                         </td>
-                                        <td
-                                            data-label="Штук в упаковке"
-                                            colspan="1"
-                                            class="history__content-table-cell"
-                                        >
-                                            1 шт.
-                                        </td>
-                                        <td
-                                            data-label="Объем упаковок"
-                                            colspan="1"
-                                            class="history__content-table-cell"
-                                        >
-                                            0,1 м²
-                                        </td>
-                                        <td
-                                            data-label="Сумма (без НДС)"
-                                            colspan="1"
-                                            class="history__content-table-cell"
-                                        >
-                                            10 руб.
-                                        </td>
+                                        <td class="history__content-table-cell hidden__mobile">0,1 м²</td>
+                                        <td class="history__content-table-cell hidden__mobile">10 руб.</td>
                                     </tr>
                                 </tbody>
 
                                 <tfoot>
-                                    <td class="history__content-table-cell" colspan="4">Итого:</td>
-                                    <td class="history__content-table-cell size" colspan="1">
-                                        <span class="hidden__desctop">Объем упаковок:</span> 0,17 м²
-                                    </td>
-                                    <td class="history__content-table-cell amount" colspan="1">
-                                        <span class="hidden__desctop">Сумма (без НДС):</span> 810 руб.
-                                    </td>
+                                    <tr class="hidden__mobile">
+                                        <td colspan="3" class="history__content-table-cell hidden__mobile">
+                                            Итого:
+                                        </td>
+                                        <td colspan="1" class="history__content-table-cell hidden__desctop">
+                                            Итого:
+                                        </td>
+                                        <td class="history__content-table-cell size">
+                                            <span class="hidden__desctop">Объем упаковок:</span> 0,17 м²
+                                        </td>
+                                        <td class="history__content-table-cell amount">
+                                            <span class="hidden__desctop">Сумма (без НДС):</span> 810 руб.
+                                        </td>
+                                    </tr>
+
+                                    <tr class="hidden__desctop">
+                                        <td colspan="3" class="history__content-table-cell hidden__mobile">
+                                            Итого:
+                                        </td>
+                                        <td colspan="1" class="history__content-table-cell hidden__desctop">
+                                            Итого:
+                                        </td>
+                                        <td class="history__content-table-cell size">Объем упаковок</td>
+                                        <td class="history__content-table-cell amount">0,17 м²</td>
+                                    </tr>
+                                    <tr class="hidden__desctop">
+                                        <td
+                                            colspan="3"
+                                            class="history__content-table-cell hidden__mobile"
+                                        ></td>
+                                        <td
+                                            colspan="1"
+                                            class="history__content-table-cell hidden__desctop"
+                                        ></td>
+                                        <td class="history__content-table-cell size">Сумма (без НДС)</td>
+                                        <td class="history__content-table-cell amount">810 руб.</td>
+                                    </tr>
                                 </tfoot>
                             </table>
                         </div>
@@ -173,105 +159,88 @@
                                         stroke-linejoin="round"
                                     />
                                 </svg>
-                                <time class="history__accordion-item-date"> 03.02.23 </time>
-                                <span class="history__accordion-item-status"> В работе </span>
+                                <time class="history__accordion-item-date">03.02.23</time>
+                                <span class="history__accordion-item-status --complete">Завершен</span>
                             </div>
-                            <button class="button history__accordion-item-btn">
+                            <a href="#" class="button history__accordion-item-btn">
                                 <span>Повторить</span>
                                 <span class="button-arrow history__accordion-item-btn-arrow">
                                     <img src="../img/news/arrow-news.svg" alt="repeat" />
                                 </span>
-                            </button>
+                            </a>
                         </div>
                         <div class="accordion__item-content history__accordion-content">
                             <table cellpadding="0" cellspacing="0" class="history__content-table">
                                 <tbody>
                                     <tr class="history__content-table-row">
-                                        <td
-                                            data-label="Артикул"
-                                            colspan="1"
-                                            class="history__content-table-cell"
-                                        >
-                                            TLZ2585M
-                                        </td>
-                                        <td
-                                            data-label="Название"
-                                            colspan="2"
-                                            class="history__content-table-cell"
-                                        >
+                                        <td class="history__content-table-cell">TLZ2585M</td>
+                                        <td class="history__content-table-cell">
                                             Трап из&nbsp;нерж. стал.&nbsp;с&nbsp;комб. затв. Киль 850мм вып
                                             50ммб матовая
                                         </td>
-                                        <td
-                                            data-label="Штук в упаковке"
-                                            colspan="1"
-                                            class="history__content-table-cell"
-                                        >
-                                            1 шт.
+                                        <td class="history__content-table-cell hidden__mobile">1 шт.</td>
+                                        <td class="history__content-table-cell hidden__desctop">
+                                            <div>1 шт.</div>
+                                            <div>0,1 м²</div>
+                                            <div>10 руб.</div>
                                         </td>
-                                        <td
-                                            data-label="Объем упаковок"
-                                            colspan="1"
-                                            class="history__content-table-cell"
-                                        >
-                                            0,1 м²
-                                        </td>
-                                        <td
-                                            data-label="Сумма (без НДС)"
-                                            colspan="1"
-                                            class="history__content-table-cell"
-                                        >
-                                            10 руб.
-                                        </td>
+                                        <td class="history__content-table-cell hidden__mobile">0,1 м²</td>
+                                        <td class="history__content-table-cell hidden__mobile">10 руб.</td>
                                     </tr>
                                     <tr class="history__content-table-row">
-                                        <td
-                                            data-label="Артикул"
-                                            colspan="1"
-                                            class="history__content-table-cell"
-                                        >
-                                            TLZ2585M
+                                        <td class="history__content-table-cell">TQ1110</td>
+                                        <td class="history__content-table-cell">
+                                            Трап гор. вып. 110, н/р реш. 15х15 пласт. 15B110N-P
                                         </td>
-                                        <td
-                                            data-label="Название"
-                                            colspan="2"
-                                            class="history__content-table-cell"
-                                        >
-                                            Трап из&nbsp;нерж. стал.&nbsp;с&nbsp;комб. затв. Киль 850мм вып
-                                            50ммб матовая
+                                        <td class="history__content-table-cell hidden__mobile">1 шт.</td>
+                                        <td class="history__content-table-cell hidden__desctop">
+                                            <div>4 шт.</div>
+                                            <div>0,16 м²</div>
+                                            <div>800 руб.</div>
                                         </td>
-                                        <td
-                                            data-label="Штук в упаковке"
-                                            colspan="1"
-                                            class="history__content-table-cell"
-                                        >
-                                            1 шт.
-                                        </td>
-                                        <td
-                                            data-label="Объем упаковок"
-                                            colspan="1"
-                                            class="history__content-table-cell"
-                                        >
-                                            0,1 м²
-                                        </td>
-                                        <td
-                                            data-label="Сумма (без НДС)"
-                                            colspan="1"
-                                            class="history__content-table-cell"
-                                        >
-                                            10 руб.
-                                        </td>
+                                        <td class="history__content-table-cell hidden__mobile">0,1 м²</td>
+                                        <td class="history__content-table-cell hidden__mobile">10 руб.</td>
                                     </tr>
                                 </tbody>
 
                                 <tfoot>
-                                    <td class="history__content-table-cell" colspan="4">Итого:</td>
-                                    <td class="history__content-table-cell size" colspan="1">
-                                        <span class="hidden__desctop">Объем упаковок:</span> 0,17 м²
-                                    </td>
-                                    <td class="history__content-table-cell amount" colspan="1">
-                                        <span class="hidden__desctop">Сумма (без НДС):</span> 810 руб.
-                                    </td>
+                                    <tr class="hidden__mobile">
+                                        <td colspan="3" class="history__content-table-cell hidden__mobile">
+                                            Итого:
+                                        </td>
+                                        <td colspan="1" class="history__content-table-cell hidden__desctop">
+                                            Итого:
+                                        </td>
+                                        <td class="history__content-table-cell size">
+                                            <span class="hidden__desctop">Объем упаковок:</span> 0,17 м²
+                                        </td>
+                                        <td class="history__content-table-cell amount">
+                                            <span class="hidden__desctop">Сумма (без НДС):</span> 810 руб.
+                                        </td>
+                                    </tr>
+
+                                    <tr class="hidden__desctop">
+                                        <td colspan="3" class="history__content-table-cell hidden__mobile">
+                                            Итого:
+                                        </td>
+                                        <td colspan="1" class="history__content-table-cell hidden__desctop">
+                                            Итого:
+                                        </td>
+                                        <td class="history__content-table-cell size">Объем упаковок</td>
+                                        <td class="history__content-table-cell amount">0,17 м²</td>
+                                    </tr>
+                                    <tr class="hidden__desctop">
+                                        <td
+                                            colspan="3"
+                                            class="history__content-table-cell hidden__mobile"
+                                        ></td>
+                                        <td
+                                            colspan="1"
+                                            class="history__content-table-cell hidden__desctop"
+                                        ></td>
+                                        <td class="history__content-table-cell size">Сумма (без НДС)</td>
+                                        <td class="history__content-table-cell amount">810 руб.</td>
+                                    </tr>
                                 </tfoot>
                             </table>
                         </div>

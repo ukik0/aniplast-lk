@@ -1,5 +1,4 @@
 .price {
-
     &__heading {
         display: flex;
         align-items: center;
@@ -69,10 +68,9 @@
             }
 
             &-list {
-                display: flex;
-                align-items: center;
-                flex-wrap: wrap;
-                gap: 2.2rem 3.9rem;
+                gap: 2.2rem 3rem;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
 
                 @media (max-width: 48em) {
                     gap: 3rem 7rem;
@@ -86,6 +84,12 @@
                 font-weight: 500;
                 line-height: 2.2rem;
                 width: 3.4rem;
+
+                &.--active {
+                    color: #fff;
+                    background: #6cc9f2;
+                    text-align: center;
+                }
 
                 @media (max-width: 48em) {
                     font-size: 3.2rem;
@@ -104,31 +108,9 @@
 
             &-table {
                 @extend .order-creation__order-table !optional;
+
                 display: block;
                 border-bottom: 0;
-
-                tbody {
-                    @media (max-width: 48em) {
-                        display: block;
-                    }
-
-                    td {
-                        &:first-child {
-                            &::before {
-                                height: 6rem;
-                            }
-                        }
-
-                        &:nth-child(3) {
-                            width: 100% !important;
-                            background: transparent !important;
-                            align-items: initial !important;
-                            padding-top: 0;
-                            overflow-y: hidden;
-                            text-align: start;
-                        }
-                    }
-                }
 
                 thead {
                     background: #fafafa;
@@ -138,14 +120,67 @@
                         display: none;
                     }
 
+                    th {
+                        text-align: start;
+
+                        &:nth-child(1) {
+                            width: 8.4rem;
+                        }
+
+                        &:nth-child(2) {
+                            width: 16.8rem;
+                        }
+
+                        &:nth-child(3) {
+                            width: 50.7rem;
+                        }
+
+                        &:nth-child(4) {
+                            width: 16.5rem;
+                            padding: 1.7rem 4rem;
+                            text-align: center;
+                        }
+
+                        &:nth-child(5) {
+                            width: 19.4rem;
+                            padding: 1.7rem 4rem;
+                            text-align: center;
+                        }
+                    }
+                }
+
+                tbody {
+                    @media (max-width: 48em) {
+                        display: block;
+                    }
+
                     td {
-                        text-align: center;
-
-                        &:nth-child(5n + 3) {
+                        &:nth-child(3) {
                             text-align: start;
+                        }
 
-                            @media (max-width: 48em) {
-                                text-align: initial;
+                        &:nth-child(4) {
+                            vertical-align: top;
+                        }
+
+                        &:nth-child(5) {
+                            vertical-align: top;
+                        }
+
+                        @media (max-width: 48em) {
+                            &:first-child {
+                                &::before {
+                                    height: 8rem;
+                                }
+                            }
+
+                            &:nth-child(3) {
+                                width: 100% !important;
+                                background: transparent !important;
+                                align-items: initial !important;
+                                padding-top: 0;
+                                overflow-y: hidden;
+                                text-align: start;
                             }
                         }
                     }
@@ -156,7 +191,6 @@
                         display: block;
                         width: 100%;
                         border-bottom: 0.1rem solid #e2e2e2;
-                        background: #fafafa;
                     }
                 }
 
@@ -180,6 +214,7 @@
                             text-align: start;
                             background: #fafafa;
                             padding: 0 2rem 2.2rem;
+                            border-right: 0.1rem solid #e2e2e2;
                         }
                     }
 

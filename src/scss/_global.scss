@@ -94,6 +94,7 @@ section {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            cursor: pointer;
 
             @media (max-width: 48em) {
                 padding: 6rem 4rem;
@@ -116,7 +117,7 @@ section {
         &-content {
             border: 1px solid #e2e2e2;
             display: none;
-            padding: 3.2rem 3rem;
+            padding: 2.2rem 3rem;
         }
 
         &.accordion__item-active {

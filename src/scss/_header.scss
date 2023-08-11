@@ -154,13 +154,30 @@
     padding-top: 2.2rem;
     padding-bottom: 2.1rem;
     border-right: 0.1rem solid #e2e2e2;
+
+    &.hidden__desctop {
+        @media (max-width: 48em) {
+            margin-left: auto;
+            order: 4;
+        }
+
+        &.--active {
+            .header__supheader-img {
+                svg {
+                    path {
+                        fill: #444444;
+                    }
+                }
+            }
+        }
+    }
 }
 .header__supheader-item--big {
     min-width: 93.7rem;
 }
 
 .header__supheader-item--authorized {
-    min-width: 74.8rem;
+    min-width: 74.9rem;
 }
 
 .header__supheader-item--flex {
@@ -176,12 +193,20 @@
     line-height: 129%;
 }
 .header__supheader-item--medium {
-    min-width: 37.6rem;
+    min-width: 37.7rem;
     padding-left: 5rem;
 }
 .header__supheader-item.header__nav-item--small {
+    &:last-child {
+        min-width: 18.9rem;
+    }
+
     .header__supheader-text {
         margin-left: 0;
+    }
+
+    .header__supheader-user {
+        gap: 1rem;
     }
 }
 .header__supheader-telephone,

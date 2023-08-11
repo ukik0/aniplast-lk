@@ -1,6 +1,6 @@
 // Custom scripts
 document.addEventListener('DOMContentLoaded', function () {
-    let isMobile = window.matchMedia('(max-width: 768px)').matches;
+    let isMobile = true;
 
     // mobile-menu
     if (document.querySelector('.mobile-menu')) {
@@ -38,9 +38,10 @@ document.addEventListener('DOMContentLoaded', function () {
         body.classList[action]('noscroll');
     };
     // mobile authorized user menu
-    const userIcon = document.querySelector('.header__supheader-user');
+    const selector = '.header__supheader-item.hidden__desctop';
+    const userIcon = document.querySelector(selector);
 
-    if (userIcon) {
+    if (userIcon && isMobile) {
         userIcon.addEventListener('click', () => {
             const mobileMenu = document.querySelector('.mobile-user-menu'),
                 closeButton = mobileMenu.querySelector('.mobile-menu__close');
@@ -66,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             mobileMenu.forEach((menu) => menu.classList.add('hidden'));
 
-            document.querySelector('.header__supheader-user').classList.remove('--active');
+            document.querySelector(selector).classList.remove('--active');
         }
     });
 
@@ -149,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function () {
         Array.from(node.querySelectorAll(selector))
             .slice(slice)
             .reduce((acc, node, index) => {
-                const names = ['article', 'name', 'count', 'price'];
+                const names = ['article', 'name', 'count', 'price', 'amount', 'size'];
 
                 acc[names[index]] = node.textContent;
 
@@ -169,14 +170,14 @@ document.addEventListener('DOMContentLoaded', function () {
         const body = document.querySelector('.order-creation__order-table').querySelector('tbody');
 
         body.innerHTML = orders
-            .map(({ article, name, count, price }) => {
+            .map(({ article, name, count, price, amount, size }) => {
                 return `
                 <tr class="order-creation__order-table-row">
                    <td data-label="Артикул" colspan="1" class="order-creation__order-table-cell">${article}</td>
                    <td data-label="Название" colspan="2" class="order-creation__order-table-cell">
                        ${name}
                    </td>
-                   <td data-label="Штук в упаковке" colspan="1" class="order-creation__order-table-cell">1</td>
+                   <td data-label="Штук в упаковке" colspan="1" class="order-creation__order-table-cell">${parseFloat(amount)}</td>
                    <td data-label="Количество упаковок" colspan="1" class="order-creation__order-table-cell counter">
                        <div>
                            <button class="order-creation__order-table-btn decrement">
@@ -188,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function () {
                            </button>
                         </div>
                    </td>
-                   <td data-label="Объем упаковок" colspan="1" class="order-creation__order-table-cell">0,1 м²</td>
+                   <td data-label="Объем упаковок" colspan="1" class="order-creation__order-table-cell">${String(parseFloat(size)).replace('.', ',')} м²</td>
                    <td data-label="Сумма (без НДС)" colspan="1" class="order-creation__order-table-cell">${price}</td>
                    <td colspan="1" class="order-creation__order-table-cell">
                        <button class="order-creation__order-table-remove-btn">
@@ -256,6 +257,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     return order;
                 });
+                console.log(order)
                 displayOrderList(order);
                 updateOrderData();
             });
@@ -267,9 +269,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const amountNode = document.querySelector('.order-creation__order-table-cell.amount');
         const sizeNode = document.querySelector('.order-creation__order-table-cell.size');
 
-        const size = order.reduce((acc, order) => acc + +order.count, 0);
+        const size = order.reduce((acc, order) => acc + (parseFloat(order.amount) * parseInt(order.count)) * parseFloat(order.size), 0);
         const amount = order.reduce((acc, order) => acc + parseFloat(order.price) * order.count, 0);
+
         amountNode.textContent = `${amount} руб.`;
+        sizeNode.textContent = `${size.toFixed(1)} м²`;
     };
 
     //Modal

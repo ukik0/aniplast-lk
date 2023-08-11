@@ -295,17 +295,13 @@
         }
 
         &-item-status {
-            color: #ffbd2e;
+            color: #6cc9f2;
             font-size: 1.6rem;
             font-weight: 500;
             line-height: normal;
 
             @media (max-width: 48em) {
                 font-size: 3rem;
-            }
-
-            &.--complete {
-                color: #6cc9f2;
             }
         }
 

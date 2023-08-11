@@ -1,5 +1,7 @@
 // Custom scripts
 document.addEventListener('DOMContentLoaded', function () {
+    let isMobile = window.matchMedia('(max-width: 768px)').matches;
+
     // mobile-menu
     if (document.querySelector('.mobile-menu')) {
         const mobileMenu = document.querySelector('.mobile-menu'),
@@ -10,7 +12,13 @@ document.addEventListener('DOMContentLoaded', function () {
             const target = e.target;
 
             const menuHandler = () => {
+                if (!isMobile) {
+                    mobileMenu.classList.add('hidden');
+                    return;
+                }
+
                 mobileMenu.classList.toggle('hidden');
+
                 lockBody('add');
             };
 
@@ -49,6 +57,18 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
+
+    window.addEventListener('resize', () => {
+        isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+        if (!isMobile) {
+            const mobileMenu = document.querySelectorAll('.mobile-menu');
+
+            mobileMenu.forEach((menu) => menu.classList.add('hidden'));
+
+            document.querySelector('.header__supheader-user').classList.remove('--active');
+        }
+    });
 
     //select
     $('.categories__select').click(function () {

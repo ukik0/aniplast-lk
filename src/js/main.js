@@ -266,14 +266,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //Update Order Data
     const updateOrderData = () => {
-        const amountNode = document.querySelector('.order-creation__order-table-cell.amount');
-        const sizeNode = document.querySelector('.order-creation__order-table-cell.size');
+        const amountNodes = document.querySelectorAll('.order-creation__order-table-cell.amount');
+        const sizeNodes = document.querySelectorAll('.order-creation__order-table-cell.size');
 
         const size = order.reduce((acc, order) => acc + (parseFloat(order.amount) * parseInt(order.count)) * parseFloat(order.size), 0);
         const amount = order.reduce((acc, order) => acc + parseFloat(order.price) * order.count, 0);
 
-        amountNode.textContent = `${amount} руб.`;
-        sizeNode.textContent = `${size.toFixed(1)} м²`;
+
+        amountNodes.forEach((node) => {
+            node.textContent = `${amount} руб.`;
+        })
+
+        sizeNodes.forEach((node) => {
+            node.textContent = `${size.toFixed(1)} м²`;
+        })
     };
 
     //Modal

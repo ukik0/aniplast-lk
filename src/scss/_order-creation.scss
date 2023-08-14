@@ -4,6 +4,10 @@
         flex-direction: column;
         align-items: flex-end;
         gap: 3rem;
+
+        @media (max-width: 48em) {
+            gap: 6rem;
+        }
     }
 
     &__order {
@@ -68,7 +72,7 @@
                     padding: 3rem 4.6rem;
 
                     span {
-                        color: var(--black, #292d32);
+                        color: #292d32;
                         font-size: 3rem;
                         line-height: normal;
                     }
@@ -170,10 +174,44 @@
                     height: initial;
                 }
 
+                tr {
+                    @media (max-width: 48em) {
+                        &.hidden__desctop{
+                            display: flex !important;
+                        }
+
+                        &:nth-child(3) {
+                            margin-top: 2rem;
+                        }
+                    }
+
+                    td {
+                        @media (max-width: 48em) {
+                            &:first-child{
+                                font-size: 3.6rem;
+                                width: 22rem;
+                            }
+
+                            &:nth-child(2){
+                                width: 16rem;
+                                text-align: start;
+                            }
+
+                            &:nth-child(3){
+                                padding: 0;
+                                text-align: start;
+                                align-items: center;
+                                margin-left: 6rem;
+                            }
+                        }
+                    }
+                }
+
                 td {
                     border: 0 !important;
                     background: inherit;
                     text-align: center;
+                    order: initial !important;
 
                     &:nth-child(2n + 1) {
                         background: transparent;
@@ -181,12 +219,6 @@
 
                     &:first-child {
                         text-align: start;
-                    }
-
-                    &:last-child {
-                        @media (max-width: 48em) {
-                            display: none;
-                        }
                     }
 
                     &::before {

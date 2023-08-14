@@ -180,6 +180,25 @@ section {
                     display: none;
                 }
             }
+
+            tfoot{
+                td {
+                    &:last-child {
+                        display: initial;
+                    }
+
+                }
+
+                tr {
+                    td {
+                        @media (max-width: 48em) {
+                            &:first-child{
+                                width: 20rem;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         &__title {

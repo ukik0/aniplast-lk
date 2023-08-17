@@ -1,4 +1,8 @@
 // Body Locked
+html {
+    scrollbar-gutter: stable;
+}
+
 body {
     &.locked {
         overflow: hidden;
@@ -82,6 +86,45 @@ section {
         }
 
         background: #6cc9f2;
+    }
+}
+
+.heading {
+    color: #292d32;
+    font-size: 4.4rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 5rem;
+
+    @media (max-width: 48em) {
+        font-size: 6rem;
+        font-weight: 500;
+        line-height: 5.8rem;
+    }
+}
+
+.input {
+    width: 100%;
+    border: none;
+    border-bottom: 0.1rem solid #b9b9b9;
+    padding-bottom: 1.5rem;
+    font-weight: normal;
+    font-size: 1.8rem;
+    line-height: 128%;
+
+    &::placeholder {
+        color: #b9b9b9;
+    }
+
+    &:focus {
+        border-bottom-color: #6cc9f2;
+    }
+
+    @media (max-width: 48em) {
+        padding-bottom: 3.1rem;
+        font-weight: normal;
+        font-size: 3rem;
+        line-height: 127%;
     }
 }
 
@@ -181,18 +224,17 @@ section {
                 }
             }
 
-            tfoot{
+            tfoot {
                 td {
                     &:last-child {
                         display: initial;
                     }
-
                 }
 
                 tr {
                     td {
                         @media (max-width: 48em) {
-                            &:first-child{
+                            &:first-child {
                                 width: 20rem;
                             }
                         }

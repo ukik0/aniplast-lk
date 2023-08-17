@@ -225,17 +225,16 @@ section {
             }
 
             tfoot {
-                td {
-                    &:last-child {
-                        display: initial;
-                    }
-                }
 
                 tr {
                     td {
                         @media (max-width: 48em) {
                             &:first-child {
                                 width: 20rem;
+                            }
+
+                            &:last-child{
+                                display: none;
                             }
                         }
                     }

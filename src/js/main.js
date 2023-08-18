@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
         body.classList[action]('noscroll');
     };
     // mobile authorized user menu
-    const selector = '.header__supheader-item.hidden__desctop';
+    const selector = '.header__supheader-item.mobile';
     const userIcon = document.querySelector(selector);
 
     if (userIcon && isMobile) {

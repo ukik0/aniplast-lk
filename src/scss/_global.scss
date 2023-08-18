@@ -17,29 +17,25 @@ section {
     }
 }
 
-.hidden__desctop {
-    display: none !important;
+@media (min-width: 48.01em) {
+    .mobile {
+        display: none;
+    }
+}
+
+@media (max-width: 48em) {
+    .desktop {
+        display: none;
+    }
 }
 
 .hidden {
     display: none;
 }
 
-@media (max-width: 48em) {
-    .new-line-mob {
-        display: block;
-    }
-    .hidden__desctop {
-        display: block !important;
-    }
-    .hidden__mobile {
-        display: none !important;
-    }
-}
-
 .noscroll {
-    overflow: hidden !important;
-    height: 100% !important;
+    overflow: hidden;
+    height: 100%;
 }
 
 .button {
@@ -235,6 +231,10 @@ section {
 
                             &:last-child{
                                 display: none;
+
+                                @media (max-width: 48em) {
+                                    display: initial;
+                                }
                             }
                         }
                     }

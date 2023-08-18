@@ -155,7 +155,7 @@
     padding-bottom: 2.1rem;
     border-right: 0.1rem solid #e2e2e2;
 
-    &.hidden__desctop {
+    &.mobile {
         @media (max-width: 48em) {
             margin-left: auto;
             order: 4;
@@ -308,7 +308,7 @@
         margin-bottom: 10rem;
     }
     .news-detail .news-main__text {
-        font-size: 3rem !important;
+        font-size: 3rem;
     }
     .sertificat-slider {
         margin-bottom: 8rem;
@@ -422,7 +422,7 @@
     transition: 0.3s;
 }
 .ymaps-cluster-night-content {
-    font-size: 1.4rem !important;
+    font-size: 1.4rem;
 }
 .categories__select:hover .categories__select-header {
     color: white;

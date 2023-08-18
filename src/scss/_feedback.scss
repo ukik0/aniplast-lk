@@ -237,6 +237,11 @@
     &-arrow {
         @extend .auth-form-btn-arrow !optional;
     }
+
+    @media (max-width: 48em) {
+        margin-left: auto;
+        padding: 3.8rem 5.4rem;
+    }
 }
 
 @media (max-width: 48em) {

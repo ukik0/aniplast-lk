@@ -22,7 +22,7 @@
             padding: 1.55rem 2rem;
 
             @media (max-width: 48em) {
-                padding: 3rem 4.6rem;
+                padding: 3rem 7rem;
 
                 span {
                     color: var(--black, #292d32);
@@ -175,9 +175,9 @@
                             }
 
                             &:nth-child(3) {
-                                width: 100% !important;
-                                background: transparent !important;
-                                align-items: initial !important;
+                                width: 100%;
+                                background: transparent;
+                                align-items: initial;
                                 padding-top: 0;
                                 overflow-y: hidden;
                                 text-align: start;
@@ -199,6 +199,7 @@
 
                     text-align: start;
                     position: relative;
+                    padding: 2rem;
 
                     @media (max-width: 48em) {
                         display: flex;

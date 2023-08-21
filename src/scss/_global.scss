@@ -221,7 +221,6 @@ section {
             }
 
             tfoot {
-
                 tr {
                     td {
                         @media (max-width: 48em) {
@@ -229,7 +228,7 @@ section {
                                 width: 20rem;
                             }
 
-                            &:last-child{
+                            &:last-child {
                                 display: none;
 
                                 @media (max-width: 48em) {

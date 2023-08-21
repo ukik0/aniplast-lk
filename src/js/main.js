@@ -6,20 +6,20 @@ document.addEventListener('DOMContentLoaded', function () {
     if (document.querySelector('.mobile-menu')) {
         const mobileMenu = document.querySelector('.mobile-menu'),
             menuButtonToggle = document.querySelector('.header__supheader-burger'),
-            closeModal = document.querySelector('.mobile-menu__close');
+            closeButton = document.querySelector('.mobile-menu__close');
 
         menuButtonToggle.addEventListener('click', (e) => {
             const target = e.target;
-
             const menuHandler = () => {
                 if (!isMobile) {
                     mobileMenu.classList.add('hidden');
                     return;
                 }
 
-                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('hidden')
+                lockBody(mobileMenu.classList.contains('hidden') ? 'remove' : 'add');
 
-                lockBody('add');
+
             };
 
             if (target.closest('.header__supheader-burger')) {
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        closeModal.addEventListener('click', () => {
+        closeButton.addEventListener('click', () => {
             mobileMenu.classList.add('hidden');
             lockBody('remove');
         });
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             mobileMenu.forEach((menu) => menu.classList.add('hidden'));
 
-            document.querySelector(selector).classList.remove('--active');
+            document.querySelector(selector)?.classList.remove('--active');
         }
     });
 
@@ -177,7 +177,9 @@ document.addEventListener('DOMContentLoaded', function () {
                    <td data-label="Название" colspan="2" class="order-creation__order-table-cell">
                        ${name}
                    </td>
-                   <td data-label="Штук в упаковке" colspan="1" class="order-creation__order-table-cell">${parseFloat(amount)}</td>
+                   <td data-label="Штук в упаковке" colspan="1" class="order-creation__order-table-cell">${parseFloat(
+                       amount
+                   )}</td>
                    <td data-label="Количество упаковок" colspan="1" class="order-creation__order-table-cell counter">
                        <div>
                            <button class="order-creation__order-table-btn decrement">
@@ -189,7 +191,9 @@ document.addEventListener('DOMContentLoaded', function () {
                            </button>
                         </div>
                    </td>
-                   <td data-label="Объем упаковок" colspan="1" class="order-creation__order-table-cell">${String(parseFloat(size)).replace('.', ',')} м²</td>
+                   <td data-label="Объем упаковок" colspan="1" class="order-creation__order-table-cell">${String(
+                       parseFloat(size)
+                   ).replace('.', ',')} м²</td>
                    <td data-label="Сумма (без НДС)" colspan="1" class="order-creation__order-table-cell">${price}</td>
                    <td colspan="1" class="order-creation__order-table-cell">
                        <button class="order-creation__order-table-remove-btn">
@@ -257,7 +261,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     return order;
                 });
-                console.log(order)
+                console.log(order);
                 displayOrderList(order);
                 updateOrderData();
             });
@@ -269,17 +273,19 @@ document.addEventListener('DOMContentLoaded', function () {
         const amountNodes = document.querySelectorAll('.order-creation__order-table-cell.amount');
         const sizeNodes = document.querySelectorAll('.order-creation__order-table-cell.size');
 
-        const size = order.reduce((acc, order) => acc + (parseFloat(order.amount) * parseInt(order.count)) * parseFloat(order.size), 0);
+        const size = order.reduce(
+            (acc, order) => acc + parseFloat(order.amount) * parseInt(order.count) * parseFloat(order.size),
+            0
+        );
         const amount = order.reduce((acc, order) => acc + parseFloat(order.price) * order.count, 0);
-
 
         amountNodes.forEach((node) => {
             node.textContent = `${amount} руб.`;
-        })
+        });
 
         sizeNodes.forEach((node) => {
             node.textContent = `${size.toFixed(1)} м²`;
-        })
+        });
     };
 
     //Modal
@@ -318,7 +324,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // ПЕРВЫЙ аргумент - класс кнопки, при клике на которую будет открываться модальное окно.
     // ВТОРОЙ аргумент - класс самого модального окна.
     // ТРЕТИЙ аргумент - класс кнопки, при клике на которую будет закрываться модальное окно.
-    bindModal('.order-creation__order-btn', '.modal__wrapper', '.modal__close');
+    const orderCreationButton = document.querySelector('.order-creation__order-btn');
+
+    if (orderCreationButton) {
+        bindModal('.order-creation__order-btn', '.modal__wrapper', '.modal__close');
+    }
 
     //Add table to modal
     const appendTable = () => {

@@ -120,16 +120,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (order.length) {
         displayOrderList(order);
-        changeCheckboxView(order)
+        changeCheckboxView(order);
     }
 
     function changeCheckboxView(order) {
-        order.forEach(({article}) => {
+        order.forEach(({ article }) => {
             const node = document.querySelector(`[data-id=${article}]`);
-            const input = node.querySelector('input')
 
-            input.checked = !input.checked
-        })
+            if (!node) return;
+
+            const input = node.querySelector('input');
+
+            input.checked = !input.checked;
+        });
     }
 
     const tableCheckboxes = document.querySelectorAll('.price__content-info-checkbox');
@@ -162,9 +165,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    const serializeDataRow = (node, selector, slice = 0) =>
+    const serializeDataRow = (node, selector, skip = 0) =>
         Array.from(node.querySelectorAll(selector))
-            .slice(slice)
+            .slice(skip)
             .reduce((acc, node, index) => {
                 const names = ['article', 'name', 'count', 'price', 'amount', 'size'];
 
@@ -183,7 +186,11 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        const body = document.querySelector('.order-creation__order-table').querySelector('tbody');
+        const orderTable = document.querySelector('.order-creation__order-table');
+
+        if (!orderTable) return;
+
+        const body = orderTable.querySelector('tbody');
 
         body.innerHTML = orders
             .map(({ article, name, count, price, amount, size }) => {
@@ -244,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 order = order.filter((order) => article !== order.article);
 
-                localStorage.setItem('order', JSON.stringify(order))
+                localStorage.setItem('order', JSON.stringify(order));
 
                 displayOrderList(order);
 
@@ -281,7 +288,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     return order;
                 });
 
-                localStorage.setItem('order', JSON.stringify(order))
+                localStorage.setItem('order', JSON.stringify(order));
 
                 displayOrderList(order);
                 updateOrderData();
@@ -364,5 +371,35 @@ document.addEventListener('DOMContentLoaded', function () {
         const body = document.querySelector('#order-creation').querySelector('.modal__body');
 
         body.textContent = '';
+    }
+
+    //Repeat order
+    const repeatButtons = document.querySelectorAll('.history__accordion-item-btn');
+
+    if (repeatButtons.length) {
+        repeatButtons.forEach((button) => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                const parent = button.closest('.history__accordion-item');
+                const rows = parent.querySelectorAll('.history__content-table-row');
+                let data = [];
+
+                rows.forEach((row) => {
+                    const dataRow = serializeDataRow(row, 'td');
+                    const serializeData = {
+                        amount: dataRow.count,
+                        article: dataRow.article,
+                        count: parseInt(dataRow.price),
+                        name: dataRow.name,
+                        price: dataRow.size,
+                        size: dataRow.amount.replace(',', '.')
+                    };
+                    data = [...data, serializeData];
+                });
+
+                localStorage.setItem('order', JSON.stringify(data));
+            });
+        });
     }
 });

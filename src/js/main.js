@@ -16,10 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     return;
                 }
 
-                mobileMenu.classList.toggle('hidden')
+                mobileMenu.classList.toggle('hidden');
                 lockBody(mobileMenu.classList.contains('hidden') ? 'remove' : 'add');
-
-
             };
 
             if (target.closest('.header__supheader-burger')) {
@@ -118,7 +116,21 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
     //Order creation
-    let order = [];
+    let order = JSON.parse(localStorage.getItem('order'));
+
+    if (order) {
+        displayOrderList(order);
+        changeCheckboxView(order)
+    }
+
+    function changeCheckboxView(order) {
+        order.forEach(({article}) => {
+            const node = document.querySelector(`[data-id=${article}]`);
+            const input = node.querySelector('input')
+
+            input.checked = !input.checked
+        })
+    }
 
     const tableCheckboxes = document.querySelectorAll('.price__content-info-checkbox');
 
@@ -135,12 +147,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (isChecked) {
                     order = [...order, data];
+                    localStorage.setItem('order', JSON.stringify(order));
 
                     displayOrderList(order);
                     return;
                 }
 
                 order = order.filter(({ article }) => article !== data.article);
+
+                localStorage.setItem('order', JSON.stringify(order));
+
                 displayOrderList(order);
             });
         });
@@ -157,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 return acc;
             }, {});
 
-    const displayOrderList = (orders) => {
+    function displayOrderList(orders) {
         const table = document.querySelector('.order-creation__info');
         const existText = document.querySelector('.order-creation__content .empty');
 
@@ -211,10 +227,10 @@ document.addEventListener('DOMContentLoaded', function () {
         changeOrderCount();
         removeOrder();
         updateOrderData();
-    };
+    }
 
     //Remove product from order
-    const removeOrder = () => {
+    function removeOrder() {
         const removeButtons = document.querySelectorAll('.order-creation__order-table-remove-btn');
 
         removeButtons.forEach((button) => {
@@ -227,6 +243,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 const input = cell.querySelector('input');
 
                 order = order.filter((order) => article !== order.article);
+
+                localStorage.setItem('order', JSON.stringify(order))
+
                 displayOrderList(order);
 
                 input.checked = !input.checked;
@@ -234,10 +253,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
             updateOrderData();
         });
-    };
+    }
 
     //Increment And Decrement
-    const changeOrderCount = () => {
+    function changeOrderCount() {
         const buttons = document.querySelectorAll('.order-creation__order-table-cell.counter button');
 
         buttons.forEach((button) => {
@@ -261,15 +280,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     return order;
                 });
-                console.log(order);
+
                 displayOrderList(order);
                 updateOrderData();
             });
         });
-    };
+    }
 
     //Update Order Data
-    const updateOrderData = () => {
+    function updateOrderData() {
         const amountNodes = document.querySelectorAll('.order-creation__order-table-cell.amount');
         const sizeNodes = document.querySelectorAll('.order-creation__order-table-cell.size');
 
@@ -286,7 +305,7 @@ document.addEventListener('DOMContentLoaded', function () {
         sizeNodes.forEach((node) => {
             node.textContent = `${size.toFixed(1)} м²`;
         });
-    };
+    }
 
     //Modal
     function bindModal(trigger, modal, close) {
@@ -331,17 +350,17 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     //Add table to modal
-    const appendTable = () => {
+    function appendTable() {
         const table = document.querySelector('.order-creation__order-table').cloneNode(true);
         const body = document.querySelector('#order-creation').querySelector('.modal__body');
 
         body.appendChild(table);
-    };
+    }
 
     // Remove table from modal after close
-    const removeTable = () => {
+    function removeTable() {
         const body = document.querySelector('#order-creation').querySelector('.modal__body');
 
         body.textContent = '';
-    };
+    }
 });

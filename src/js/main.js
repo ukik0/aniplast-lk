@@ -116,9 +116,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
     //Order creation
-    let order = JSON.parse(localStorage.getItem('order'));
+    let order = JSON.parse(localStorage.getItem('order')) || [];
 
-    if (order) {
+    if (order.length) {
         displayOrderList(order);
         changeCheckboxView(order)
     }
@@ -280,6 +280,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     return order;
                 });
+
+                localStorage.setItem('order', JSON.stringify(order))
 
                 displayOrderList(order);
                 updateOrderData();

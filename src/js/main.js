@@ -312,7 +312,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         sizeNodes.forEach((node) => {
-            node.textContent = `${size.toFixed(1)} м<sup>3</sup>`;
+            node.textContent = `${size.toFixed(1)} м3`;
         });
     }
 
@@ -404,7 +404,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // add query params to history page
-    if (window.location.pathname === '/history.html') {
-        history.pushState(null, null, "?filter_history=Y");
+    const url = new URL(window.location.href)
+    console.log(window.location.pathname)
+    if (url.search !== '?filter_history=Y' && window.location.pathname === '/history.html' ) {
+        // history.pushState(null, null, "?filter_history=Y");
+        window.location.href = url.href + '?filter_history=Y'
     }
 });

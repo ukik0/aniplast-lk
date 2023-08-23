@@ -312,7 +312,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         sizeNodes.forEach((node) => {
-            node.textContent = `${size.toFixed(1)} м²`;
+            node.textContent = `${size.toFixed(1)} м<sup>3</sup>`;
         });
     }
 
@@ -401,5 +401,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 localStorage.setItem('order', JSON.stringify(data));
             });
         });
+    }
+
+    // add query params to history page
+    if (window.location.pathname === '/history.html') {
+        history.pushState(null, null, "?filter_history=Y");
     }
 });
